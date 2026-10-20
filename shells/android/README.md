@@ -1,6 +1,6 @@
 # Ziggy test app, Android native app
 
-The example's Android project: one activity (`MainActivity`) that hosts a web view run by Ziggy's Android native app (`packages/ziggy/native/android` in Ziggy's repository). Package `dev.ziggy.testapp`. The SDK levels and the NDK are in `variables.gradle`, which the scripts read too. Ziggy's Android native app is a Gradle build of its own, which `settings.gradle` declares as a source dependency on Ziggy's repository, and the app depends on it at a version tag as `dev.ziggy:ziggy-native-android`.
+The example's Android project: one activity (`MainActivity`) that hosts a web view run by Ziggy's Android native app (`packages/ziggy/native/android` in Ziggy's repository). Package `dev.ziggy.testapp`. The SDK levels and the NDK are in `variables.gradle`, which the scripts read too. Ziggy's Android native app is a Gradle build of its own, which `settings.gradle` includes from the checkout of Ziggy beside this repository, and the app depends on it as `dev.ziggy:ziggy-native-android`.
 
 What is packaged:
 

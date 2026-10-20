@@ -13,7 +13,7 @@ EXAMPLE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 ACTION="${1:-}"
 case "$ACTION" in
     build)
-        (cd "$EXAMPLE_DIR" && zig build ziggy-test-app-core)
+        (cd "$EXAMPLE_DIR" && zig build ziggy-test-app-backend)
         ;;
     cross)
         # The example's core library for every platform that is not this one, with and without the test hooks. The
@@ -21,7 +21,7 @@ case "$ACTION" in
         for target in aarch64-macos.11.0 x86_64-macos.11.0 aarch64-ios.14.0 aarch64-ios.14.0-simulator x86_64-ios.14.0-simulator x86_64-windows-gnu aarch64-windows-gnu x86_64-linux-gnu aarch64-linux-gnu; do
             for hooks in false true; do
                 echo "Cross-building the example core for $target (test hooks: $hooks)"
-                (cd "$EXAMPLE_DIR" && zig build ziggy-test-app-core -Dtarget="$target" -Dtest-hooks="$hooks" -p "core/zig-out/cross/$target-$hooks")
+                (cd "$EXAMPLE_DIR" && zig build ziggy-test-app-backend -Dtarget="$target" -Dtest-hooks="$hooks" -p "core/zig-out/cross/$target-$hooks")
             done
         done
         # The Windows shell, which needs the WebView2 SDK, fetched once and then reused. It is only compiled here, not linked: the
