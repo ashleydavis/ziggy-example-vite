@@ -10,7 +10,7 @@ The Ziggy test app is an app made from the Ziggy template and built on Ziggy, to
 
 - `ui/`: the UI. `ui/src/lib` holds its plain functions and `ui/src/test` their unit tests.
 - `core/`: the app's Zig code. `core/src/app.zig` declares the app with `ziggy.core.App`: each message name with its handler, each task type with its handler, and the menu, UI files and hooks it gives Ziggy's core. The handlers are in `core/src/lib`. `core/src/test` holds its unit tests.
-- `shells/<platform>/`: the native app for each platform.
+- `native/<platform>/`: the native app for each platform.
 - `scripts/`: the scripts that build, run, package and set up the app, with the shell libraries the scripts and smoke tests share (`scripts/lib`).
 - `smoke-tests/`: the smoke test scenarios and a library for each platform.
 
@@ -20,7 +20,7 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
 
 ## Ziggy
 
-- Ziggy's code lives in its own repository, https://github.com/ashleydavis/ziggy. This repository pins it to a version tag in `build.zig.zon` (the `ziggy` dependency), `package.json` (`ziggy-ui`), the Xcode projects in `shells/macos` and `shells/ios` and `shells/android/app/build.gradle`, all to the same tag. A move to a new version of Ziggy changes every one of them together.
+- Ziggy's code lives in its own repository, https://github.com/ashleydavis/ziggy. This repository pins it to a version tag in `build.zig.zon` (the `ziggy` dependency), `package.json` (`ziggy-ui`), the Xcode projects in `native/macos` and `native/ios` and `native/android/app/build.gradle`, all to the same tag. A move to a new version of Ziggy changes every one of them together.
 - Never edit Ziggy's code from this repository. If a change needs one in Ziggy, stop and say what and why.
 
 ## Rules
@@ -142,7 +142,7 @@ Run from the root of this repository. Each platform's commands run on that platf
 - [Smoke tests](smoke-tests/run.md): the runner and every scenario. [run-desktop.md](smoke-tests/run-desktop.md) for the host operating system.
 - [Shared shell libraries](scripts/lib/): [process-control.md](scripts/lib/process-control.md), [test-lib.md](scripts/lib/test-lib.md), [test-timeout.md](scripts/lib/test-timeout.md), [android-env.md](scripts/lib/android-env.md).
 - Each script in `scripts/` has a markdown file beside it.
-- The native apps: [Android](shells/android/README.md), [iOS](shells/ios/README.md), [macOS](shells/macos/README.md), [Windows](shells/windows/README.md).
+- The native apps: [Android](native/android/README.md), [iOS](native/ios/README.md), [macOS](native/macos/README.md), [Windows](native/windows/README.md).
 - [Ziggy](https://github.com/ashleydavis/ziggy/blob/main/README.md): what Ziggy is, and its glossary.
 - [Ziggy architecture](https://github.com/ashleydavis/ziggy/blob/main/docs/architecture.md): the parts, the message protocol, the test hooks and how to add a message, a task type or a native host callback.
 - [Building your app](https://github.com/ashleydavis/ziggy/blob/main/docs/building-your-app.md): starting an app from the Ziggy template.

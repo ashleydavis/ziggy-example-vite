@@ -23,7 +23,7 @@ Everything here is the app's own. Ziggy, the package it is built on, comes from 
 - `package.json`: takes the UI's types from Ziggy as `ziggy-ui`, by the git URL of the same tag.
 - `ui/`: the UI. `ui/index.html` is the UI and `ui/src/lib` holds the plain functions that have unit tests. `vite.config.ts` is its build, which writes `dist` with relative paths and a classic script so it loads from an address of the app's own in every web view. `dist` is embedded in the app's own code on every platform (the Linux and Windows executables, and the core library that the MacOS, iOS and Android apps contain), so no platform has a folder of UI files (see the [architecture guide](https://github.com/ashleydavis/ziggy/blob/main/docs/architecture.md#the-bundled-ui)).
 - `core/`: the app's Zig library. `core/src/app.zig` declares the app with `ziggy.core.App`, listing each message name with its handler and each task type with its handler, and Ziggy's build exports Ziggy's C interface for it. The handlers, each with the request and response structs of its message, are in `core/src/lib`.
-- `shells/<platform>/`: the app's native project for each platform: its name, window, icon and the app's core and UI packaged together. Each one builds on Ziggy's part for that platform in `packages/ziggy/native/<platform>` of Ziggy's repository: the Linux and Windows native apps through the Zig build, the Xcode projects through the Swift package at the root of Ziggy's repository and the Android project through a Gradle source dependency on Ziggy's repository.
+- `native/<platform>/`: the app's native project for each platform: its name, window, icon and the app's core and UI packaged together. Each one builds on Ziggy's part for that platform in `packages/ziggy/native/<platform>` of Ziggy's repository: the Linux and Windows native apps through the Zig build, the Xcode projects through the Swift package at the root of Ziggy's repository and the Android project through a Gradle source dependency on Ziggy's repository.
 - `scripts`: the build, run, packaging and setup scripts, and the shell libraries the scripts and smoke tests share (`scripts/lib`), each with a markdown file beside it.
 - `smoke-tests`: the smoke test scenarios and a library for each platform. See `smoke-tests/run.md`.
 
@@ -66,7 +66,7 @@ The smoke tests drive the real app through the test hooks listed in "Test hooks"
 
 - **The UI**: the app's HTML, CSS and JavaScript/TypeScript, which runs in the system web view. The native menus and file dialogs are not part of it.
 - **The core**: the app's Zig code together with Ziggy's core library. It is the same on every platform, handles messages from the UI, runs tasks and never touches a window.
-- **The native app**: the part of the app written separately for each platform. It opens the window, hosts the system web view and draws the menus and file dialogs. It also passes messages between the UI and the core. It lives in `shells/`.
+- **The native app**: the part of the app written separately for each platform. It opens the window, hosts the system web view and draws the menus and file dialogs. It also passes messages between the UI and the core. It lives in `native/`.
 - See [Ziggy's glossary](https://github.com/ashleydavis/ziggy/blob/main/README.md#glossary) for the full list.
 
 ## CI

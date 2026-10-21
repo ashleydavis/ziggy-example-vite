@@ -4,7 +4,7 @@
     .fingerprint = 0x37269507ca0f0698,
     .minimum_zig_version = "0.16.0",
     .dependencies = .{
-        // Ziggy, from the local checkout beside this repository. package.json and shells/android/settings.gradle take the same
+        // Ziggy, from the local checkout beside this repository. package.json and native/android/settings.gradle take the same
         // checkout. The Xcode projects still take the version tag.
         .ziggy = .{
             .path = "../ziggy",
@@ -14,6 +14,6 @@
         "build.zig",
         "build.zig.zon",
         "core",
-        "shells",
+        "native",
     },
 }
