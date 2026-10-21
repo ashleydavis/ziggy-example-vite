@@ -9,7 +9,7 @@ The Ziggy test app is an app made from the Ziggy template and built on Ziggy, to
 "The UI", "the core" and "the native app" mean what the [Glossary](README.md#glossary) says. [Ziggy's glossary](https://github.com/ashleydavis/ziggy/blob/main/README.md#glossary) has the full list. Use those terms.
 
 - `ui/`: the UI. `ui/src/lib` holds its plain functions and `ui/src/test` their unit tests.
-- `core/`: the app's Zig code, which adds its channel handlers and task handlers to Ziggy's core. `core/src/test` holds its unit tests.
+- `core/`: the app's Zig code. `core/src/app.zig` declares the app with `ziggy.core.App`: each message name with its handler, each task type with its handler, and the menu, UI files and hooks it gives Ziggy's core. The handlers are in `core/src/lib`. `core/src/test` holds its unit tests.
 - `shells/<platform>/`: the native app for each platform.
 - `scripts/`: the scripts that build, run, package and set up the app, with the shell libraries the scripts and smoke tests share (`scripts/lib`).
 - `smoke-tests/`: the smoke test scenarios and a library for each platform.
@@ -144,7 +144,7 @@ Run from the root of this repository. Each platform's commands run on that platf
 - Each script in `scripts/` has a markdown file beside it.
 - The native apps: [Android](shells/android/README.md), [iOS](shells/ios/README.md), [macOS](shells/macos/README.md), [Windows](shells/windows/README.md).
 - [Ziggy](https://github.com/ashleydavis/ziggy/blob/main/README.md): what Ziggy is, and its glossary.
-- [Ziggy architecture](https://github.com/ashleydavis/ziggy/blob/main/docs/architecture.md): the parts, the message protocol, the test hooks and how to add a channel, a task type or a native host callback.
+- [Ziggy architecture](https://github.com/ashleydavis/ziggy/blob/main/docs/architecture.md): the parts, the message protocol, the test hooks and how to add a message, a task type or a native host callback.
 - [Building your app](https://github.com/ashleydavis/ziggy/blob/main/docs/building-your-app.md): starting an app from the Ziggy template.
 - [Integrating Ziggy](https://github.com/ashleydavis/ziggy/blob/main/docs/integrating-ziggy.md): how each kind of project takes Ziggy.
 - [Distributing your app](https://github.com/ashleydavis/ziggy/blob/main/docs/distributing-your-app.md): packaging, signing and getting builds to testers.

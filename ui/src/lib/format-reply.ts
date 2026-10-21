@@ -1,5 +1,5 @@
 //
-// The reply the example's ping channel gives.
+// The message response the example's ping message gets.
 //
 export interface IPingReply {
     // The Zig version the core was built with.

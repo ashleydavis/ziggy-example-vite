@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# The file and folder pickers: each button asks the core for a native dialog on the channel the Electron app uses, and the UI
+# The file and folder pickers: each button asks the core for a native dialog, in a message named after the Electron app's channel for it, and the UI
 # shows what was chosen, or that nothing was. The scenario answers the dialogs itself, so none is shown.
 
 source "$(dirname "${BASH_SOURCE[0]}")/../lib/common.sh"
