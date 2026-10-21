@@ -1,6 +1,6 @@
 //
-// What the UI does for each action of the example's menu that the shells hand it. The shells do the rest themselves
-// (quit, reload, developer tools, zoom, full screen and the editing commands).
+// What the UI does for each `.ui` item of the example's menu, which reaches it as the app event {"type": "menu", "item": "<name>"}.
+// The shells do the standard items themselves (quit, reload, developer tools, zoom, full screen and the editing commands).
 //
 
 //
