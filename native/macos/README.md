@@ -13,7 +13,7 @@ The project links `libziggy_example_vite.a` from the directory in the `ZIGGY_NAT
 ## What you do on the Mac
 
 - Install Xcode 14.2 (macOS 12.7.6 is enough) and `jq`, then run `mise install` in the repository and `bun install` at the root.
-- Run `bun run run:macos`.
+- Run `bun run macos`.
 
 ## Menu, shortcuts and developer tools
 

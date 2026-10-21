@@ -55,7 +55,7 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
 - Never use `cd` to change directories permanently. Use it only inside a single command.
 - Never invoke shell scripts directly (for example `bash scripts/build-linux.sh`). Use the `bun run` script from `package.json` (for example `bun run build:linux`).
 - HIGH PRIORITY: `rm -r` is banned, in every form and every flag combination that includes it (`-r`, `-R`, `--recursive`, `-rf`, `-fr`), unless the human asks for that exact deletion in the message you are acting on. This covers commands you run, commands you ask the human to run and any `rm -r` you write into a script, a test or a runner. If you believe something has to be removed recursively, stop and say what and why. Removing a single file by name is fine.
-- The `run:<platform>` commands build the app before launching it, so the running app is always built from current source. Never blame a change that does not show up on a stale build. Find the real cause.
+- The `bun run <platform>` commands build the app before launching it, so the running app is always built from current source. Never blame a change that does not show up on a stale build. Find the real cause.
 - Never say something was "intentionally done" unless the human explicitly asked for that exact behaviour. State what the code does and own the mistake.
 - Something you previously wrote in a plan is not something the human approved. Never give "it was in the plan" as the reason for a change. "What is the reason for X?" means "Why was that change necessary?".
 - Plans are transient. Never reference a plan from anything that stays: documentation, a slash command, code, comments, a commit message or another doc. If a plan contains something worth keeping, copy the content itself into the thing that needs it.
@@ -73,7 +73,7 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
 
 ## Android emulators
 
-- `run:android` and the Android smoke tests (`test:smoke:and`) use the devices named in `ZIGGY_ANDROID_DEVICES` (adb serials, space separated), else any attached emulator or device, whichever project started it. A run claims each device under Ziggy's per-device lock (`ziggy_android_device_lock_path` in `scripts/android-common.sh`), so two Ziggy runs never install over each other.
+- `bun run android` and the Android smoke tests (`test:smoke:and`) use the devices named in `ZIGGY_ANDROID_DEVICES` (adb serials, space separated), else any attached emulator or device, whichever project started it. A run claims each device under Ziggy's per-device lock (`ziggy_android_device_lock_path` in `scripts/android-common.sh`), so two Ziggy runs never install over each other.
 - Never assume whether an emulator is attached. Run `adb devices` at the point you need the answer, never from a reading taken earlier: the human starts and stops emulators without saying so. If the check disagrees with what you expected, the check is right.
 - Never start, stop, restart or repair an emulator, never create or remove a tap or a bridge and never run sudo. If an emulator is broken, report it and leave it.
 

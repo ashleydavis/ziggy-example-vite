@@ -40,7 +40,7 @@ mise install
 bun install
 ```
 
-Then build and run the app with `bun run run:<platform>` (for example `bun run run:linux`), using the commands below.
+Then build and run the app with `bun run <platform>` (for example `bun run linux`), using the commands below.
 
 ## Commands
 
@@ -55,7 +55,7 @@ From the root of this repository, `<platform>` being `linux`, `windows`, `macos`
 | `bun run sync:<platform>` | Builds the UI and the backend and puts what the platform's native project needs where it expects it. |
 | `bun run dev` | Runs the app in dev mode: Vite (the `dev:ui` script) serves the UI, the dev host runs the backend in front of it, rebuilt as its Zig files change, and the default browser opens the dev host, with live reload. See the [dev host's README](https://github.com/ashleydavis/ziggy/blob/main/packages/ziggy/dev/README.md). `zig build ziggy-example-vite-dev -- --no-open` does the same without opening the browser. |
 | `bun run build:<platform>` | Builds the UI and the app. |
-| `bun run run:<platform>` | Builds the app and launches it (an emulator, simulator or device for a phone). |
+| `bun run <platform>` | Builds the app and launches it (an emulator, simulator or device for a phone). |
 | `bun run open:<platform>` | Syncs, then opens the native project in its editor. |
 | `bun run package:<platform>` | Packages the app for distribution, without the test hooks, into `out/<platform>`. |
 | `bun run distribute:android` | Builds the Android app and uploads it to Firebase App Distribution for the tester group. See `scripts/distribute-android.md`. |
