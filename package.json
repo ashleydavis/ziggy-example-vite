@@ -54,7 +54,7 @@
     "distribute:android": "bash ./scripts/distribute-android.sh"
   },
   "dependencies": {
-    "ziggy-ui": "file:../ziggy/packages/ziggy/ui"
+    "ziggy-ui": "git+https://github.com/ashleydavis/ziggy.git#v0.0.3"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",

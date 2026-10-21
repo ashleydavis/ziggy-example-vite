@@ -1,6 +1,6 @@
 # Ziggy test app
 
-An app made from the Ziggy template, in a folder of its own, to prove that an app outside Ziggy's repository can be built on Ziggy as a package. It was copied from `apps/ziggy-template`, renamed and pointed at a checkout of Ziggy's repository beside it, as [Building your app](https://github.com/ashleydavis/ziggy/blob/main/docs/building-your-app.md) describes, and holds no Ziggy source. Everything below is the example's description, which holds for it too. See [Ziggy architecture](https://github.com/ashleydavis/ziggy/blob/main/docs/architecture.md) for how the parts fit.
+An app made from the Ziggy template, in a folder of its own, to prove that an app outside Ziggy's repository can be built on Ziggy as a package. It was copied from `apps/ziggy-template`, renamed and pointed at a version tag of Ziggy's repository, as [Building your app](https://github.com/ashleydavis/ziggy/blob/main/docs/building-your-app.md) describes, and holds no Ziggy source. Everything below is the example's description, which holds for it too. See [Ziggy architecture](https://github.com/ashleydavis/ziggy/blob/main/docs/architecture.md) for how the parts fit.
 
 ## What it shows
 
@@ -17,9 +17,9 @@ An app made from the Ziggy template, in a folder of its own, to prove that an ap
 
 ## Where things are
 
-Everything here is the app's own. Ziggy, the package it is built on, comes from a checkout of [Ziggy's repository](https://github.com/ashleydavis/ziggy) in a folder named `ziggy` beside this one, except in the Xcode projects, which still take a version tag.
+Everything here is the app's own. Ziggy, the package it is built on, comes from a version tag of [Ziggy's repository](https://github.com/ashleydavis/ziggy), the same tag in every place below.
 
-- `build.zig` and `build.zig.zon`: the app's Zig build. It takes Ziggy as the dependency `ziggy` by the path of the checkout beside this one, and builds the core (`ziggy-test-app-backend`), the Linux and Windows native apps (`ziggy-test-app-linux`, `ziggy-test-app-windows`), dev mode (`ziggy-test-app-dev`) and the core's unit tests (`test`) with Ziggy's build functions.
+- `build.zig` and `build.zig.zon`: the app's Zig build. It takes Ziggy as the dependency `ziggy` by the URL of a version tag and its hash, and builds the core (`ziggy-test-app-backend`), the Linux and Windows native apps (`ziggy-test-app-linux`, `ziggy-test-app-windows`), dev mode (`ziggy-test-app-dev`) and the core's unit tests (`test`) with Ziggy's build functions.
 - `package.json`: takes the UI's types from Ziggy as `ziggy-ui`, by the git URL of the same tag.
 - `ui/`: the UI. `ui/index.html` is the UI and `ui/src/lib` holds the plain functions that have unit tests. `vite.config.ts` is its build, which writes `dist` with relative paths and a classic script so it loads from an address of the app's own in every web view. `dist` is embedded in the app's own code on every platform (the Linux and Windows executables, and the core library that the MacOS, iOS and Android apps contain), so no platform has a folder of UI files (see the [architecture guide](https://github.com/ashleydavis/ziggy/blob/main/docs/architecture.md#the-bundled-ui)).
 - `core/`: the app's Zig library. `core/src/app.zig` declares the app with `ziggy.core.App`, listing each message name with its handler and each task type with its handler, and Ziggy's build exports Ziggy's C interface for it. The handlers, each with the request and response structs of its message, are in `core/src/lib`.
