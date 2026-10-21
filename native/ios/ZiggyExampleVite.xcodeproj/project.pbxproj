@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A10000000000000000000001 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000001 /* AppMain.swift */; };
+		A10000000000000000000001 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000001 /* ViewController.swift */; };
 		A10000000000000000000002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000002 /* AppDelegate.swift */; };
-		A10000000000000000000004 /* ZiggyNativeMacOS in Frameworks */ = {isa = PBXBuildFile; productRef = A60000000000000000000001 /* ZiggyNativeMacOS */; };
+		A10000000000000000000004 /* ZiggyNativeIOS in Frameworks */ = {isa = PBXBuildFile; productRef = A60000000000000000000001 /* ZiggyNativeIOS */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A20000000000000000000001 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
+		A20000000000000000000001 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A20000000000000000000002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A20000000000000000000003 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A20000000000000000000005 /* ZiggyExampleVite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZiggyExampleVite.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,7 +24,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10000000000000000000004 /* ZiggyNativeMacOS in Frameworks */,
+				A10000000000000000000004 /* ZiggyNativeIOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +43,7 @@
 		A40000000000000000000002 /* ZiggyExampleVite */ = {
 			isa = PBXGroup;
 			children = (
-				A20000000000000000000001 /* AppMain.swift */,
+				A20000000000000000000001 /* ViewController.swift */,
 				A20000000000000000000002 /* AppDelegate.swift */,
 				A20000000000000000000003 /* Info.plist */,
 			);
@@ -82,7 +82,7 @@
 			);
 			name = ZiggyExampleVite;
 			packageProductDependencies = (
-				A60000000000000000000001 /* ZiggyNativeMacOS */,
+				A60000000000000000000001 /* ZiggyNativeIOS */,
 			);
 			productName = ZiggyExampleVite;
 			productReference = A20000000000000000000005 /* ZiggyExampleVite.app */;
@@ -134,7 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10000000000000000000001 /* AppMain.swift in Sources */,
+				A10000000000000000000001 /* ViewController.swift in Sources */,
 				A10000000000000000000002 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,9 +150,9 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				ZIGGY_NATIVE_DIR = "$(SRCROOT)/zig-out";
@@ -166,8 +166,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				SDKROOT = macosx;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				ZIGGY_NATIVE_DIR = "$(SRCROOT)/zig-out";
@@ -177,13 +177,15 @@
 		A90000000000000000000003 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = ZiggyExampleVite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/../Frameworks",
+					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -196,19 +198,23 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.ziggy.examplevite;
 				PRODUCT_NAME = ZiggyExampleVite;
 				SWIFT_VERSION = 5.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		A90000000000000000000004 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = ZiggyExampleVite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/../Frameworks",
+					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -221,6 +227,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.ziggy.examplevite;
 				PRODUCT_NAME = ZiggyExampleVite;
 				SWIFT_VERSION = 5.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -254,16 +262,16 @@
 			repositoryURL = "https://github.com/ashleydavis/ziggy";
 			requirement = {
 				kind = exactVersion;
-				version = 0.0.1;
+				version = 0.0.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A60000000000000000000001 /* ZiggyNativeMacOS */ = {
+		A60000000000000000000001 /* ZiggyNativeIOS */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AB0000000000000000000001 /* XCRemoteSwiftPackageReference "ziggy" */;
-			productName = ZiggyNativeMacOS;
+			productName = ZiggyNativeIOS;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

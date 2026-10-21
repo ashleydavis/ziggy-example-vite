@@ -1,6 +1,6 @@
 # open-ios
 
-Runs `sync-ios.sh`, then opens `shells/ios/ZiggyExampleVite.xcodeproj` in Xcode.
+Runs `sync-ios.sh`, then opens `native/ios/ZiggyExampleVite.xcodeproj` in Xcode.
 
 Run it on a Mac: `bash scripts/open-ios.sh`.
 

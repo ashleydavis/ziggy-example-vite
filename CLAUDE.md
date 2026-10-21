@@ -9,8 +9,8 @@ The Ziggy Vite example is an example app built on Ziggy, with its UI built by Vi
 "The UI", "the backend" and "the native app" mean what [Ziggy's glossary](https://github.com/ashleydavis/ziggy/blob/main/docs/glossary.md) says. Use those terms.
 
 - `ui/`: the UI. `ui/src/lib` holds its plain functions and `ui/src/test` their unit tests.
-- `backend/`: the app's Zig code, which adds its channel handlers and task handlers to Ziggy's core library. `backend/src/test` holds its unit tests.
-- `shells/<platform>/`: the native app for each platform.
+- `backend/`: the app's Zig code. `backend/src/app.zig` declares the app with `ziggy.core.App`: each message name with its handler, each task type with its handler, and the menu, UI files and UI query it gives Ziggy's core. The handlers are in `backend/src/lib`. `backend/src/test` holds its unit tests.
+- `native/<platform>/`: the native app for each platform.
 - `scripts/`: the scripts that build, run, package and set up the app, with the shell libraries they share (`scripts/lib`).
 - `smoke-tests/`: the smoke tests, with a library for each platform.
 
@@ -20,7 +20,7 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
 
 ## Ziggy
 
-- Ziggy's code lives in its own repository, https://github.com/ashleydavis/ziggy. This repository pins it to a version tag in `build.zig.zon` (the `ziggy` dependency), `package.json` (`ziggy-ui`), the Xcode projects in `shells/macos` and `shells/ios` and `shells/android/app/build.gradle`, all to the same tag. A move to a new version of Ziggy changes every one of them together.
+- Ziggy's code lives in its own repository, https://github.com/ashleydavis/ziggy. This repository pins it to a version tag in `build.zig.zon` (the `ziggy` dependency), `package.json` (`ziggy-ui`), the Xcode projects in `native/macos` and `native/ios` and `native/android/app/build.gradle`, all to the same tag. A move to a new version of Ziggy changes every one of them together.
 - Never edit Ziggy's code from this repository. If a change needs one in Ziggy, stop and say what and why.
 
 ## Rules

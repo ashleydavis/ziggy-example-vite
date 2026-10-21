@@ -1,6 +1,6 @@
 # open-macos
 
-Runs `sync-macos.sh`, then opens `shells/macos/ZiggyExampleVite.xcodeproj` in Xcode, so a build from Xcode finds the library and the UI.
+Runs `sync-macos.sh`, then opens `native/macos/ZiggyExampleVite.xcodeproj` in Xcode, so a build from Xcode finds the library and the UI.
 
 Run it on a Mac: `bash scripts/open-macos.sh`.
 

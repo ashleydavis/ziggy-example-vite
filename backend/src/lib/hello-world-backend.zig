@@ -1,7 +1,7 @@
 //
 // Hello world example: change it into your own code, or delete it.
 //
-// The two kinds of Zig code an app's UI uses: a message handler, which answers a message from the UI straight away, and a task,
+// The two kinds of Zig code an app's UI uses: a message handler, which returns the message response to a message from the UI straight away, and a task,
 // which does slower work on a thread of its own and reports back while it runs.
 //
 
@@ -12,19 +12,32 @@ const ziggy = @import("ziggy-core");
 const TaskContext = ziggy.task_runner.TaskContext;
 
 //
-// Answers the UI's hello-world message with a greeting for the name in the message's data, naming the platform the app runs on.
+// The data of the UI's hello-world message.
 //
-pub fn helloWorldHandler(core: *ziggy.core.Core, arena: std.mem.Allocator, data: std.json.Value) anyerror![]const u8 {
+pub const HelloWorldRequest = struct {
+    // Who to greet.
+    name: []const u8,
+};
+
+//
+// The message response to the hello-world message.
+//
+pub const HelloWorldResponse = struct {
+    // The greeting, naming the platform the app runs on.
+    greeting: []const u8,
+};
+
+//
+// Handles the UI's hello-world message: returns a greeting for the name in the message's data, naming the platform the app runs on.
+//
+pub fn helloWorldHandler(core: *ziggy.core.Core, arena: std.mem.Allocator, request: HelloWorldRequest) !HelloWorldResponse {
     _ = core;
-    const name = ziggy.json_util.getString(data, "name") orelse {
-        return error.MissingName;
-    };
-    return try ziggy.json_util.stringify(arena, .{
+    return .{
         .greeting = try std.fmt.allocPrint(arena, "Hello {s}, from Zig on {s}", .{
-            name,
+            request.name,
             @tagName(builtin.os.tag),
         }),
-    });
+    };
 }
 
 //

@@ -5,16 +5,16 @@
     .minimum_zig_version = "0.16.0",
     .dependencies = .{
         // Ziggy, at a version tag of its repository. Every other place that takes Ziggy (package.json, the Xcode projects and
-        // shells/android/app/build.gradle) names the same version.
+        // native/android/app/build.gradle) names the same version.
         .ziggy = .{
-            .url = "git+https://github.com/ashleydavis/ziggy.git#v0.0.1",
-            .hash = "ziggy-0.0.0-Yh04rnvdEwCY6dZ_0jjtNXNYmGHLOJ-Vpp8LIbYKwYk2",
+            .url = "git+https://github.com/ashleydavis/ziggy.git#v0.0.3",
+            .hash = "ziggy-0.0.0-Yh04rqzFFQBvsk0Fxs3e9UzLg0wemwUTFz3_VRnWuqAA",
         },
     },
     .paths = .{
         "build.zig",
         "build.zig.zon",
         "backend",
-        "shells",
+        "native",
     },
 }

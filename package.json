@@ -52,7 +52,7 @@
     "test:smoke:ios": "bash ./smoke-tests/run.sh ios"
   },
   "dependencies": {
-    "ziggy-ui": "git+https://github.com/ashleydavis/ziggy.git#v0.0.1"
+    "ziggy-ui": "git+https://github.com/ashleydavis/ziggy.git#v0.0.3"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",
