@@ -1,9 +1,9 @@
 //
-// The example's desktop menu. Ziggy's shells draw it natively on every desktop platform and never on a phone.
+// The example's desktop menu. The native app draws it with the platform's own menu API on every desktop platform and never on a phone.
 //
-// Each item says what it runs. A `.standard` item is an action the native app does itself (quit, close-window, reload, the zoom and
+// Each item names what it runs. A `.standard` item is an action the native app does itself (quit, close-window, reload, the zoom and
 // editing actions, full screen and the developer tools). A `.zig` item calls a Zig function of the app's on the thread that handles
-// messages. A `.ui` item reaches the UI as the app event {"type": "menu", "item": "<name>"}; each of those has a `.name`. The
+// messages. A `.ui` item reaches the frontend as the app event {"type": "menu", "item": "<name>"}; each of those has a `.name`. The
 // example's items are all standard. See "Menus" in the architecture document.
 //
 

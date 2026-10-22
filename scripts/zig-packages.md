@@ -1,6 +1,6 @@
 # zig-packages.sh
 
-Builds the UI first (`bun run bundle:ui`), because the example's backend embeds it, then builds, cross-builds or tests the Zig parts of the example with the steps of the example's own `build.zig`, which takes Ziggy as a dependency: the example's backend (`backend`, with Ziggy's core library built into it) and the native apps.
+Builds the frontend first (`bun run bundle:ui`), because the example's backend embeds it, then builds, cross-builds or tests the Zig parts of the example with the steps of the example's own `build.zig`, which takes Ziggy as a dependency: the example's backend (`backend`, with Ziggy's core library built into it) and the native apps.
 
 ## Usage
 

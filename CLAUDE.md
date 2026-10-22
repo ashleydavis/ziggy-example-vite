@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-The Ziggy Vite example is an example app built on Ziggy, with its UI built by Vite. It is a copy of the Ziggy template, renamed. It takes Ziggy from a version tag of Ziggy's repository on GitHub and holds no Ziggy source.
+The Ziggy Vite example is an example app built on Ziggy, with its frontend built by Vite. It is a copy of the Ziggy template, renamed. It takes Ziggy from a version tag of Ziggy's repository on GitHub and holds no Ziggy source.
 
-"The UI", "the backend" and "the native app" mean what [Ziggy's glossary](https://github.com/ashleydavis/ziggy/blob/main/docs/glossary.md) says. Use those terms.
+Use the terms "the frontend", "the backend" and "the native app" as [Ziggy's glossary](https://github.com/ashleydavis/ziggy/blob/main/docs/glossary.md) defines them.
 
-- `ui/`: the UI. `ui/src/lib` holds its plain functions and `ui/src/test` their unit tests.
-- `backend/`: the app's Zig code. `backend/src/app.zig` declares the app with `ziggy.core.App`: each message name with its handler, each task type with its handler, and the menu, UI files and UI query it gives Ziggy's core. The handlers are in `backend/src/lib`. `backend/src/test` holds its unit tests.
+- `ui/`: the frontend. `ui/src/lib` holds its plain functions and `ui/src/test` their unit tests.
+- `backend/`: the app's Zig code. `backend/src/app.zig` declares the app with `ziggy.core.App`: each message name with its handler, each task type with its handler, and the menu, frontend files and frontend query it gives Ziggy's core. The handlers are in `backend/src/lib`. `backend/src/test` holds its unit tests.
 - `native/<platform>/`: the native app for each platform.
 - `scripts/`: the scripts that build, run, package and set up the app, with the shell libraries they share (`scripts/lib`).
 - `smoke-tests/`: the smoke tests, with a library for each platform.
@@ -44,11 +44,11 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
 - YOU FIND A BUG, YOU FIX IT. A test that failed once and passed the next time is a bug: a race, a fixed timeout that load can exceed or a resource it does not own. Find the cause and fix the cause.
   - "It passed on the retry", "it fails only under load", "it is unrelated to my change" and "it was already like that" are not results.
   - Do not write a bug down instead of dealing with it: no registry, known-issues list, doc section or TODO comment naming a test that sometimes fails.
-  - The only failures outside your reach are outside the machine: a network that dropped, a disk that filled or failed, a remote service that was down. The code should expect those and fail loudly, saying what happened. Everything else is yours: if you cannot find the cause yet, say what you have ruled out and what you will look at next.
+  - The only failures outside your reach are outside the machine: a network that dropped, a disk that filled or failed, a remote service that was down. The code should expect those and fail loudly, naming what happened. Everything else is yours: if you cannot find the cause yet, say what you have ruled out and what you will look at next.
 - NEVER USE EM DASHES.
 - Never use memory.
 - All Claude configuration goes in this repository only, not in the home directory.
-- Slash commands go in `.claude/commands/`, as a markdown file per command, grouped in a subdirectory where there is more than one of a kind. A request for a "skill" means one of these. Do not create a `.claude/skills/` directory or a `SKILL.md`. A command file has frontmatter carrying `description` and nothing else, then the prompt as ordinary markdown with a heading and steps. The `description` says what the command does, not when to trigger it.
+- Slash commands go in `.claude/commands/`, as a markdown file per command, grouped in a subdirectory where there is more than one of a kind. A request for a "skill" means one of these. Do not create a `.claude/skills/` directory or a `SKILL.md`. A command file has frontmatter carrying `description` and nothing else, then the prompt as ordinary markdown with a heading and steps. The `description` describes what the command does, not when to trigger it.
 - Never write `mise exec --` in docs, READMEs, comments or script help text. It is only for commands Claude runs itself.
 - Never say "you are right", "you're right" or any other agreement as a way to open a reply. Say what was wrong and what you will do about it. Never tell the human untested code can be committed now and tested later: say it is untested, and say what would test it.
 - Never stash code unless asked.
@@ -73,7 +73,7 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
 
 ## Android emulators
 
-- `bun run android` and the Android smoke tests (`test:smoke:and`) use the devices named in `ZIGGY_ANDROID_DEVICES` (adb serials, space separated), else any attached emulator or device, whichever project started it. A run claims each device under Ziggy's per-device lock (`ziggy_android_device_lock_path` in `scripts/android-common.sh`), so two Ziggy runs never install over each other.
+- `bun run android` and the Android smoke tests (`test:smoke:android`) use the devices named in `ZIGGY_ANDROID_DEVICES` (adb serials, space separated), else any attached emulator or device, whichever project started it. A run claims each device under Ziggy's per-device lock (`ziggy_android_device_lock_path` in `scripts/android-common.sh`), so two Ziggy runs never install over each other.
 - Never assume whether an emulator is attached. Run `adb devices` at the point you need the answer, never from a reading taken earlier: the human starts and stops emulators without saying so. If the check disagrees with what you expected, the check is right.
 - Never start, stop, restart or repair an emulator, never create or remove a tap or a bridge and never run sudo. If an emulator is broken, report it and leave it.
 
@@ -86,9 +86,9 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
 
 ## Languages and scripts
 
-- THIS REPOSITORY USES TYPESCRIPT, ZIG AND SHELL SCRIPT. NOTHING ELSE. The UI is TypeScript. The backend and the Linux and Windows native apps are Zig. The scripts are shell. Swift (the macOS and iOS native apps) and Java (the Android native app) are an exception, because those platforms require them, and are no licence to add more native code than the platform forces. `python3`, perl, Ruby, Go and friends are banned outright, including as an undeclared dependency. The pinned tools are in `mise.toml`.
+- THIS REPOSITORY USES TYPESCRIPT, ZIG AND SHELL SCRIPT. NOTHING ELSE. The frontend is TypeScript. The backend and the Linux and Windows native apps are Zig. The scripts are shell. Swift (the macOS and iOS native apps) and Java (the Android native app) are an exception, because those platforms require them, and are no licence to add more native code than the platform forces. `python3`, perl, Ruby, Go and friends are banned outright, including as an undeclared dependency. The pinned tools are in `mise.toml`.
 - A SHELL SCRIPT CONTAINS SHELL. Do not embed another language inside one, in any form: not `python3 -c "..."`, not `bun -e "..."`, not `node -e`, not a heredoc feeding an interpreter, not an awk program doing the work of a script. This holds however short the snippet is.
-- When a shell script needs something that looks beyond shell, find the shell answer first: `stat`, `cmp`, `uuidgen`, `od`, `jq`. Assume there is one until you have tried it and watched it fail. Only when there is no shell answer does it become a TypeScript helper: a `.ts` file under `scripts/`, with a comment block saying what it is for and a documented argument list. See `scripts/ios-device.ts`.
+- When a shell script needs something that looks beyond shell, find the shell answer first: `stat`, `cmp`, `uuidgen`, `od`, `jq`. Assume there is one until you have tried it and watched it fail. Only when there is no shell answer does it become a TypeScript helper: a `.ts` file under `scripts/`, with a comment block explaining what it is for and a documented argument list. See `scripts/ios-device.ts`.
 - Shell scripts always use a `.sh` extension.
 - EVERY NEW SCRIPT COMES WITH A MARKDOWN FILE BESIDE IT, named after the script, covering what it is for, how it is invoked and what each argument means. Keep it current.
 - DO NOT WRITE TESTS FOR SHELL SCRIPTS, and do not create `*.test.sh` files. Shell here is the test harness itself, and what proves it works is running the real suite it drives. If you believe a piece of shell cannot be trusted without a test, stop and ask.
@@ -112,15 +112,15 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
 - All global symbols (functions, types, interfaces, classes, constants) must have a `//` comment block above them explaining their intent.
 - All fields in interfaces, classes and structs must have a `//` comment explaining their purpose.
 - Never use single-character variable names, including arrow function parameters. Use long descriptive identifiers.
-- Do not introduce a constant that is used once. A value used in one place goes inline at that place, unless the literal does not explain itself and the name is what says why that value.
+- Do not introduce a constant that is used once. A value used in one place goes inline at that place, unless the literal does not explain itself and the name is what explains why that value.
 - Avoid single line if statements. All if statements have braces around the body.
 - Never put multiple statements on one line.
 - Never write an object literal on one line. Open the brace, put each property and each spread on its own line ending in a comma and close the brace on its own line. The only exception is an empty `{}`.
 - Put `else` and `catch` blocks on a new line.
-- UI unit tests go in `ui/src/test` and the backend's in `backend/src/test`.
+- Frontend unit tests go in `ui/src/test` and the backend's in `backend/src/test`.
 - Use `test(` not `it(` in Jest test files.
-- Logic in the UI worth testing goes in a plain function under `ui/src/lib` with a unit test. Do not extract trivial logic only to gain a test.
-- Do not invent a new file to "get a test on it". When logic belongs to something that already exists, put it there. When it belongs nowhere and is small enough to read in one go, leave it where it is with a comment saying why. The test that exercises the feature covers it.
+- Logic in the frontend worth testing goes in a plain function under `ui/src/lib` with a unit test. Do not extract trivial logic only to gain a test.
+- Do not invent a new file to "get a test on it". When logic belongs to something that already exists, put it there. When it belongs nowhere and is small enough to read in one go, leave it where it is with a comment explaining why. The test that exercises the feature covers it.
 - Avoid the `any` type in normal code, although it is ok sometimes in test code.
 - Never use anonymous object types inline (for example `Promise<{ foo: number }>`). Define a named interface instead.
 - Never use the IIFE async generator pattern. Extract to a named `async function*` instead.

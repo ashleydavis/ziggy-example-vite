@@ -1,8 +1,8 @@
 //
 // Hello world example: change it into your own code, or delete it.
 //
-// The two kinds of Zig code an app's UI uses: a message handler, which returns the message response to a message from the UI straight away, and a task,
-// which does slower work on a thread of its own and reports back while it runs.
+// The two kinds of Zig code an app's frontend uses: a message handler, which returns the message response to a message from the
+// frontend straight away, and a task, which does slower work on a thread of its own and reports back while it runs.
 //
 
 const std = @import("std");
@@ -12,7 +12,7 @@ const ziggy = @import("ziggy");
 const TaskContext = ziggy.task_runner.TaskContext;
 
 //
-// The data of the UI's hello-world message.
+// The data of the frontend's hello-world message.
 //
 pub const HelloWorldRequest = struct {
     // Who to greet.
@@ -28,7 +28,7 @@ pub const HelloWorldResponse = struct {
 };
 
 //
-// Handles the UI's hello-world message: returns a greeting for the name in the message's data, naming the platform the app runs on.
+// Handles the frontend's hello-world message: returns a greeting for the name in the message's data, naming the platform the app runs on.
 //
 pub fn helloWorldHandler(core: *ziggy.core.Core, arena: std.mem.Allocator, request: HelloWorldRequest) !HelloWorldResponse {
     _ = core;
@@ -41,7 +41,7 @@ pub fn helloWorldHandler(core: *ziggy.core.Core, arena: std.mem.Allocator, reque
 }
 
 //
-// The hello-world task: sends the UI one output message while it runs, then completes with a result.
+// The hello-world task: sends the frontend one output event while it runs, then completes with a result.
 //
 pub fn helloWorldTaskHandler(context: *TaskContext, data: std.json.Value) anyerror!?[]const u8 {
     _ = data;

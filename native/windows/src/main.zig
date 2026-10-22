@@ -1,6 +1,6 @@
 //
-// The Ziggy Vite example's Windows shell: what is the example's own (its name, its window and its UI) on top of Ziggy's shell.
-// The UI is embedded in the executable by build.zig.
+// The Ziggy Vite example's Windows native app: what is the example's own (its name, its window and its frontend) on top of the
+// part Ziggy provides. The frontend is embedded in the executable by build.zig.
 //
 
 const std = @import("std");

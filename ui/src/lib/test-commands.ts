@@ -1,7 +1,7 @@
 import type { IJsonObject } from "ziggy";
 
 //
-// The commands the test control connection forwards to the UI, performed on the UI's DOM by data-id. The UI
+// The commands the test control connection forwards to the frontend, performed on the frontend's DOM by data-id. The frontend
 // replies to each with a result. These exist only so the smoke tests can drive the real app, and the backend sends them only in
 // a test hooks build.
 //
@@ -27,7 +27,7 @@ export interface ITestCommand {
 }
 
 //
-// What the UI replies to a command with.
+// What the frontend replies to a command with.
 //
 export interface ITestResult {
     // Whether the command succeeded.
@@ -41,7 +41,7 @@ export interface ITestResult {
 }
 
 //
-// What a command needs to find and act on elements. The UI gives the real document and a test gives a stand-in.
+// What a command needs to find and act on elements. The frontend gives the real document and a test gives a fake.
 //
 export interface IElementFinder {
     // Finds the element with the data-id, or null.
@@ -108,7 +108,7 @@ export function performTestCommand(finder: IElementFinder, command: ITestCommand
 }
 
 //
-// Converts a result to the JSON the UI sends back with window.ziggy.sendTestResult. A field with no value is left out.
+// Converts a result to the JSON the frontend sends back with window.ziggy.sendTestResult. A field with no value is left out.
 //
 export function testResultToJson(result: ITestResult): IJsonObject {
     const json: IJsonObject = { ok: result.ok };

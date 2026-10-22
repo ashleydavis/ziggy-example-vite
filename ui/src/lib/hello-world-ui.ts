@@ -1,14 +1,14 @@
 //
 // Hello world example: change it into your own code, or delete it.
 //
-// A plain function the UI uses, kept out of main.ts so it can be unit tested on its own.
+// A plain function the frontend uses, kept out of main.ts so it can be unit tested on its own.
 //
 
 //
 // The backend's message response to the hello-world message.
 //
 export interface IHelloWorldResponse {
-    // The greeting the backend made for the name the UI sent.
+    // The greeting the backend made for the name the frontend sent.
     greeting: string;
 }
 
