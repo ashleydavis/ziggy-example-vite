@@ -1,5 +1,5 @@
 import type { IJsonValue } from "ziggy";
-import { greetingLine, IHelloWorldResponse } from "./lib/hello-world-ui";
+import { greetingLine, IHelloWorldResponse } from "./lib/hello-world";
 import { ITestCommand, performTestCommand, testResultToJson } from "./lib/test-commands";
 
 //
@@ -49,8 +49,8 @@ function listenForTheTask(): void {
             priority: "interactive",
         });
     });
-    window.ziggy.onTaskMessage<IOutputEvent>(event => {
-        element("task-output").textContent += `${event.message.text}\n`;
+    window.ziggy.onTaskEvent<IOutputEvent>(event => {
+        element("task-output").textContent += `${event.data.text}\n`;
     });
     window.ziggy.onTaskCompleted(event => {
         element("task-output").textContent += `The task ended: ${event.result.status}\n`;

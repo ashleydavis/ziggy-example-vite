@@ -45,7 +45,7 @@ pub fn helloWorldHandler(core: *ziggy.core.Core, arena: std.mem.Allocator, reque
 //
 pub fn helloWorldTaskHandler(context: *TaskContext, data: std.json.Value) anyerror!?[]const u8 {
     _ = data;
-    try context.sendMessage(.{
+    try context.sendEvent(.{
         .type = "output",
         .text = "Hello world from a task",
     });

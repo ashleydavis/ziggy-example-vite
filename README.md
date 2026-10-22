@@ -8,8 +8,8 @@ The example is the smallest complete app: a hello world for each kind of code an
 
 | Kind | Code | Test |
 |---|---|---|
-| Frontend | `ui/src/lib/hello-world-ui.ts`, used by `ui/src/main.ts` | `ui/src/test/hello-world-ui.test.ts` (`bun run test`) |
-| Backend: a message handler and a task | `backend/src/lib/hello-world-backend.zig`, registered in `backend/src/app.zig` | `backend/src/test/hello-world-backend.test.zig` (`bun run test:zig`) |
+| Frontend | `frontend/src/lib/hello-world.ts`, used by `frontend/src/main.ts` | `frontend/src/test/hello-world.test.ts` (`bun run test`) |
+| Backend: a message handler and a task | `backend/src/lib/hello-world.zig`, registered in `backend/src/app.zig` | `backend/src/test/hello-world.test.zig` (`bun run test:zig`) |
 | The whole app | The app | `smoke-tests/hello-world-app/test.sh` (`bun run test:smoke`) |
 
 The page shows the backend's message response to the `hello-world` message, and a button starts the `hello-world-task` task and shows what it sends. The desktop menu is defined once in Zig (`backend/src/lib/menu.zig`) and drawn natively; a mobile device shows no menu.
@@ -20,7 +20,7 @@ Everything here is the app's own. Ziggy, the package it is built on, comes from 
 
 - `build.zig` and `build.zig.zon`: the app's Zig build. It takes Ziggy as the dependency `ziggy` by the URL of a version tag and its hash, and builds the backend (`ziggy-example-vite-backend`), the Linux and Windows native apps (`ziggy-example-vite-linux`, `ziggy-example-vite-windows`), dev mode (`ziggy-example-vite-dev`) and the backend's unit tests (`test`) with Ziggy's build functions.
 - `package.json`: takes the frontend's types from Ziggy as `ziggy`, by the git URL of the same tag.
-- `ui/`: the frontend. `ui/index.html` is the frontend and `ui/src/lib` holds the plain functions that have unit tests. `vite.config.ts` is its build, which writes `dist` with relative paths and a classic script so it loads from an address of the app's own in every web view. `dist` is embedded in the app's own code on every platform (the Linux and Windows executables, and the backend library that the MacOS, iOS and Android apps contain), so no platform has a folder of frontend files (see the [architecture guide](https://github.com/ashleydavis/ziggy/blob/main/docs/development/architecture.md#the-bundled-frontend)).
+- `frontend/`: the frontend. `frontend/index.html` is the frontend and `frontend/src/lib` holds the plain functions that have unit tests. `vite.config.ts` is its build, which writes `dist` with relative paths and a classic script so it loads from an address of the app's own in every web view. `dist` is embedded in the app's own code on every platform (the Linux and Windows executables, and the backend library that the MacOS, iOS and Android apps contain), so no platform has a folder of frontend files (see the [architecture guide](https://github.com/ashleydavis/ziggy/blob/main/docs/development/architecture.md#the-bundled-frontend)).
 - `backend/`: the app's Zig library. `backend/src/app.zig` declares the app with `ziggy.core.App`, listing each message name with its handler and each task type with its handler, and Ziggy's build exports Ziggy's C interface for it. The handlers are in `backend/src/lib`.
 - `native/<platform>/`: the app's native project for each platform: its name, window, icon and the app's backend and frontend packaged together. Each one builds on Ziggy's part for that platform in `packages/ziggy/native/<platform>` of Ziggy's repository: the Linux and Windows native apps through the Zig build, the Xcode projects through the Swift package at the root of Ziggy's repository and the Android project through a Gradle source dependency on Ziggy's repository.
 - `scripts`: the build, run, packaging and setup scripts, and the shell libraries the scripts share (`scripts/lib`), each with a markdown file beside it.
@@ -79,7 +79,7 @@ From the root of this repository, `<platform>` being `linux`, `windows`, `macos`
 
 ## Test hooks
 
-The smoke tests drive the real app through the test hooks listed in "Test hooks" in the architecture guide: `backend/src/lib/ui-query.zig` tells the frontend it is in test mode, and `ui/src/lib/test-commands.ts` handles the commands the smoke tests send. They are compiled in only by the `test-hooks` build option, which the smoke test runner sets and the `package` commands never do.
+The smoke tests drive the real app through the test hooks listed in "Test hooks" in the architecture guide: `backend/src/lib/ui-query.zig` tells the frontend it is in test mode, and `frontend/src/lib/test-commands.ts` handles the commands the smoke tests send. They are compiled in only by the `test-hooks` build option, which the smoke test runner sets and the `package` commands never do.
 
 ## CI
 

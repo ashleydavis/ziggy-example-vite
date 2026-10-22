@@ -2,7 +2,7 @@
 // Hello world example: change it into your own tests, or delete it.
 //
 
-import { greetingLine } from "../lib/hello-world-ui";
+import { greetingLine } from "../lib/hello-world";
 
 test("the greeting line shows what the backend said", () => {
     expect(greetingLine({

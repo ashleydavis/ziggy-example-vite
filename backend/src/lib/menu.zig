@@ -4,7 +4,7 @@
 // Each item names what it runs. A `.standard` item is an action the native app does itself (quit, close-window, reload, the zoom and
 // editing actions, full screen and the developer tools). A `.zig` item calls a Zig function of the app's on the thread that handles
 // messages. A `.ui` item reaches the frontend as the app event {"type": "menu", "item": "<name>"}; each of those has a `.name`. The
-// example's items are all standard. See "Menus" in the architecture document.
+// example's items are all standard. See Ziggy's guide "Menus".
 //
 
 const ziggy = @import("ziggy");

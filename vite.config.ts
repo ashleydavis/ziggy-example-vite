@@ -16,7 +16,7 @@ function classicScript(): Plugin {
 
 export default defineConfig({
     plugins: [classicScript()],
-    root: 'ui',
+    root: 'frontend',
     base: './',
     build: {
         outDir: '../dist',

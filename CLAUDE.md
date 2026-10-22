@@ -8,7 +8,7 @@ The Ziggy Vite example is an example app built on Ziggy, with its frontend built
 
 Use the terms "the frontend", "the backend" and "the native app" as [Ziggy's glossary](https://github.com/ashleydavis/ziggy/blob/main/docs/glossary.md) defines them.
 
-- `ui/`: the frontend. `ui/src/lib` holds its plain functions and `ui/src/test` their unit tests.
+- `frontend/`: the frontend. `frontend/src/lib` holds its plain functions and `frontend/src/test` their unit tests.
 - `backend/`: the app's Zig code. `backend/src/app.zig` declares the app with `ziggy.core.App`: each message name with its handler, each task type with its handler, and the menu, frontend files and frontend query it gives Ziggy's core. The handlers are in `backend/src/lib`. `backend/src/test` holds its unit tests.
 - `native/<platform>/`: the native app for each platform.
 - `scripts/`: the scripts that build, run, package and set up the app, with the shell libraries they share (`scripts/lib`).
@@ -117,9 +117,9 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
 - Never put multiple statements on one line.
 - Never write an object literal on one line. Open the brace, put each property and each spread on its own line ending in a comma and close the brace on its own line. The only exception is an empty `{}`.
 - Put `else` and `catch` blocks on a new line.
-- Frontend unit tests go in `ui/src/test` and the backend's in `backend/src/test`.
+- Frontend unit tests go in `frontend/src/test` and the backend's in `backend/src/test`.
 - Use `test(` not `it(` in Jest test files.
-- Logic in the frontend worth testing goes in a plain function under `ui/src/lib` with a unit test. Do not extract trivial logic only to gain a test.
+- Logic in the frontend worth testing goes in a plain function under `frontend/src/lib` with a unit test. Do not extract trivial logic only to gain a test.
 - Do not invent a new file to "get a test on it". When logic belongs to something that already exists, put it there. When it belongs nowhere and is small enough to read in one go, leave it where it is with a comment explaining why. The test that exercises the feature covers it.
 - Avoid the `any` type in normal code, although it is ok sometimes in test code.
 - Never use anonymous object types inline (for example `Promise<{ foo: number }>`). Define a named interface instead.
