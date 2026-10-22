@@ -1,4 +1,4 @@
-import type { IJsonValue } from "ziggy-ui";
+import type { IJsonValue } from "ziggy";
 import { greetingLine, IHelloWorldResponse } from "./lib/hello-world-ui";
 import { ITestCommand, performTestCommand, testResultToJson } from "./lib/test-commands";
 

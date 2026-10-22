@@ -7,7 +7,7 @@
 // example's items are all standard. See "Menus" in the architecture document.
 //
 
-const ziggy = @import("ziggy-core");
+const ziggy = @import("ziggy");
 
 //
 // The menu the example passes to ziggy.core.App as `.menu`.
