@@ -52,11 +52,9 @@ pub fn helloWorldHandler(services: HandlerServices, timers: Timers, io: std.Io, 
 //
 pub fn helloWorldTaskHandler(services: TaskServices, timers: Timers, io: std.Io, allocator: std.mem.Allocator, context: TaskContext, payload: std.json.Value) ![]const u8 {
     _ = timers;
-    _ = io;
-    _ = allocator;
     _ = context;
     _ = payload;
-    try services.sendEvent(.{
+    try services.sendEvent(io, allocator, .{
         .type = "output",
         .text = "Hello world from a task",
     });
