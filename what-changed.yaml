@@ -1,0 +1,59 @@
+# Which checks the pre-commit hook runs, decided by which files changed since each one last passed.
+#
+# Each target is one of the checks the CI workflow runs. scripts/test-everything.sh runs the ones what-changed
+# reports and records each as it passes. See scripts/test-everything.md.
+
+always:
+  - package.json
+  - bun.lock
+  - mise.toml
+  - build.zig
+  - build.zig.zon
+  - what-changed.yaml
+  - scripts/test-everything.sh
+
+ignore:
+  - .md
+  - .txt
+  - .log
+
+targets:
+  - name: compile
+    paths:
+      - frontend
+      - tsconfig.json
+      - vite.config.ts
+
+  - name: test
+    paths:
+      - frontend
+      - tsconfig.json
+      - jest.config.js
+
+  - name: compile-zig
+    paths:
+      - backend
+      - frontend
+      - native
+      - vite.config.ts
+      - scripts/zig-packages.sh
+      - scripts/bundle-ui.sh
+      - scripts/fetch-webview2.sh
+
+  - name: test-zig
+    paths:
+      - backend
+      - frontend
+      - native
+      - vite.config.ts
+      - scripts/zig-packages.sh
+      - scripts/bundle-ui.sh
+
+  - name: smoke
+    paths:
+      - backend
+      - frontend
+      - native
+      - scripts
+      - smoke-tests
+      - vite.config.ts

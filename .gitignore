@@ -14,3 +14,4 @@ webview2-sdk/
 wix/
 native/windows/package/
 .claude/worktrees/
+.what-changed/

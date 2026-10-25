@@ -66,6 +66,8 @@ From the root of this repository, `<platform>` being `linux`, `windows`, `macos`
 | `bun run test:smoke` | The smoke tests on the host operating system. `bun run test:smoke -- <name>` runs one. |
 | `bun run test:smoke:android` | The smoke tests on an attached Android emulator or device. |
 | `bun run test:smoke:ios` | The smoke tests on a connected iPhone or iPad when there is one, otherwise the iOS simulator. |
+| `bun run install-hooks` | Installs the pre-commit hook into this clone. Run once per clone. See `scripts/install-hooks.md`. |
+| `bun run test:everything` | Runs the checks (`compile`, `test`, `compile:zig`, `test:zig` and `test:smoke`) whose files changed since each last passed. The pre-commit hook runs it. `-- --force` runs them all. See `scripts/test-everything.md`. |
 
 `bun run package:<platform>` builds the release app, without the test hooks, and writes unsigned packages. Each platform's script doc explains where they go and what they need:
 
