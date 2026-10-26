@@ -4,11 +4,10 @@
     .fingerprint = 0xc31d2a38c0ad0c9a,
     .minimum_zig_version = "0.16.0",
     .dependencies = .{
-        // Ziggy, at a version tag of its repository. Every other place that takes Ziggy (package.json, the Xcode projects and
-        // native/android/app/build.gradle) names the same version.
+        // Ziggy, from the checkout of its repository beside this one. Every other place that takes Ziggy (package.json, the Xcode
+        // projects and native/android/settings.gradle) takes the same checkout.
         .ziggy = .{
-            .url = "git+https://github.com/ashleydavis/ziggy.git?ref=v0.0.16#c433239335de0550da6abd0fb943458ae189d1be",
-            .hash = "ziggy-0.0.0-Yh04rkdwGwD2fu8vsMsLFFkg7wj9xUMZyC6WuDSNDHy4",
+            .path = "../ziggy",
         },
     },
     .paths = .{
