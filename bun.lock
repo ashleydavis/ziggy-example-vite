@@ -5,7 +5,7 @@
     "": {
       "name": "ziggy-example-vite",
       "dependencies": {
-        "ziggy": "file:../ziggy",
+        "ziggy": "git+https://github.com/ashleydavis/ziggy.git#v0.0.17",
       },
       "devDependencies": {
         "@types/jest": "^29.4.0",
@@ -737,7 +737,7 @@
 
     "yocto-queue": ["yocto-queue@0.1.0", "", {}, "sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q=="],
 
-    "ziggy": ["ziggy-monorepo@file:../ziggy", {}],
+    "ziggy": ["ziggy-monorepo@github:ashleydavis/ziggy#da8cfd4", {}, "ashleydavis-ziggy-da8cfd4", "sha512-lbej5xKXes4gTqZEyGvZtvqxvq341pIgOZVElIRTj4u5i6xhK7DlE1AbZnu5rlQ4JBKw7oBE6bsaDKp0UYz5tg=="],
 
     "@babel/core/semver": ["semver@6.3.1", "", { "bin": { "semver": "bin/semver.js" } }, "sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA=="],
 

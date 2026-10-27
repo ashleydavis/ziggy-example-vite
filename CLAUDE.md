@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-The Ziggy Vite example is an example app built on Ziggy, with its frontend built by Vite. It is a copy of the Ziggy template, renamed. It takes Ziggy from the checkout of Ziggy's repository beside this one (`../ziggy`) and holds no Ziggy source.
+The Ziggy Vite example is an example app built on Ziggy, with its frontend built by Vite. It is a copy of the Ziggy template, renamed. It takes Ziggy from a version tag of Ziggy's repository on GitHub and holds no Ziggy source.
 
 Use the terms "the frontend", "the backend" and "the native app" as [Ziggy's glossary](https://github.com/ashleydavis/ziggy/blob/main/docs/glossary.md) defines them.
 
@@ -20,7 +20,7 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
 
 ## Ziggy
 
-- Ziggy's code lives in its own repository, https://github.com/ashleydavis/ziggy. This repository takes it from the checkout beside this one, `../ziggy`, in `build.zig.zon` (the `ziggy` dependency), `package.json` (`ziggy`), the Xcode projects in `native/macos` and `native/ios` and `native/android/settings.gradle`, all the same checkout.
+- Ziggy's code lives in its own repository, https://github.com/ashleydavis/ziggy. This repository pins it to a version tag in `build.zig.zon` (the `ziggy` dependency), `package.json` (`ziggy`), the Xcode projects in `native/macos` and `native/ios` and `native/android/app/build.gradle`, all to the same tag. A move to a new version of Ziggy changes every one of them together.
 - Never edit Ziggy's code from this repository. If a change needs one in Ziggy, stop and say what and why.
 
 ## Rules
