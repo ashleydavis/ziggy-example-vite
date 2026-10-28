@@ -230,9 +230,11 @@ jobs:
           key: example-build-macos-x64-${{ github.sha }}
           fail-on-cache-miss: true
 
+      # package-macos.sh takes Xcode's architecture names, arm64 or x86_64. Given x64, the Release macOS x64 package job failed with
+      # "ERROR: unsupported architecture 'x64'. Use arm64 or x86_64."
       - name: Package
         shell: bash
-        run: bun run package:macos --arch x64 --output-dir "$PWD/out/macos-x64"
+        run: bun run package:macos --arch x86_64 --output-dir "$PWD/out/macos-x64"
 
       - name: Save the package
         uses: actions/cache/save@v4
