@@ -20,7 +20,7 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
 
 ## Ziggy
 
-- Ziggy's code lives in its own repository, https://github.com/ashleydavis/ziggy. This repository pins it to a version tag in `build.zig.zon` (the `ziggy` dependency), `package.json` (`ziggy`), the Xcode projects in `native/macos` and `native/ios` and `native/android/app/build.gradle`, all to the same tag. A move to a new version of Ziggy changes every one of them together.
+- Ziggy's code lives in its own repository, https://github.com/ashleydavis/ziggy. This repository pins it to a version tag in `build.zig.zon` (the `ziggy` dependency), `package.json` (`ziggy` and `ziggy-remote-control-server`), the Xcode projects in `native/macos` and `native/ios` and `native/android/app/build.gradle`, all to the same tag. A move to a new version of Ziggy changes every one of them together.
 - Never edit Ziggy's code from this repository. If a change needs one in Ziggy, stop and say what and why.
 
 ## Rules
@@ -30,7 +30,7 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
 - YOU ARE RESPONSIBLE FOR THE CODE IN THIS REPO. IT DOESN'T MATTER "IF IT WAS ALREADY LIKE THAT": YOU ARE EXPECTED TO FIX IT.
 - IF YOU DON'T KNOW WHO WROTE THE CODE, IT MEANS YOU (CLAUDE) WROTE THE CODE.
 - IT IS ALWAYS YOUR RESPONSIBILITY TO FIX COMPILE ERRORS AND FAILING TESTS. NEVER USE THE "PREEXISTING" EXCUSE.
-- ANY addition of "test only" scaffolding to the app code must be approved by the human first, or not added at all. That means anything shipped in the app that exists solely to let tests set up or inspect state: seeding functions, injection points, test-only commands, events or globals. The test hooks are compiled in only by the `test-hooks` build option, which the `package` scripts never set, and scenario `8-release-has-no-hooks` checks the release build has none. If a test needs state, set it up from outside the app (write the file, place the data on disk).
+- ANY addition of "test only" scaffolding to the app code must be approved by the human first, or not added at all. That means anything shipped in the app that exists solely to let tests set up or inspect state: seeding functions, injection points, test-only commands, events or globals. The test hooks act only when the app is started with `--remote-control`. If a test needs state, set it up from outside the app (write the file, place the data on disk).
 - NEVER WRITE A WORKAROUND, A FAKE, A MOCK, A STUB OR A HAND-WRITTEN "REPLACEMENT" FOR A THIRD-PARTY SDK OR LIBRARY UNLESS THE HUMAN HAS SPECIFICALLY APPROVED THAT EXACT THING FIRST, IN THE MESSAGE YOU ARE ACTING ON. Approval must be explicit and asked for in advance. Silence is not approval. An earlier approval for one thing is not approval for another and is not a standing permission. If you are unsure whether something counts, it counts: stop and ask. This bans reimplementing a vendor SDK, hand-writing a wire protocol or response parsing that a maintained library already does and aliasing a real package to your own substitute at build time.
 - If the real library will not work in an environment, STOP AND ASK THE HUMAN. Do not fill the gap yourself. Say what does not work and what the options are, and wait for an answer. A shim that makes a build succeed while quietly reimplementing the library is worse than a build that fails.
 - The same applies to tests: do not make a test pass by faking the thing under test, skipping it or running it only when an environment variable that is normally unset is set. A test that reports success without asserting anything is worse than no test. If a test needs real infrastructure, provision it or tell the human it cannot be done.
@@ -74,7 +74,7 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
 
 ## Android emulators
 
-- `bun run android` and the Android smoke tests (`test:smoke:android`) use the devices named in `ZIGGY_ANDROID_DEVICES` (adb serials, space separated), else any attached emulator or device, whichever project started it. A run claims each device under Ziggy's per-device lock (`ziggy_android_device_lock_path` in `scripts/android-common.sh`), so two Ziggy runs never install over each other.
+- `bun run android` and the Android smoke tests (`test:smoke:android`) use the devices named in `ZIGGY_ANDROID_DEVICES` (adb serials, space separated), else any attached emulator or device, whichever project started it; the smoke tests take a plugged-in device in preference to an emulator. A run claims each device under Ziggy's per-device lock (`ziggy_android_device_lock_path` in `scripts/android-common.sh`), so two Ziggy runs never install over each other.
 - Never assume whether an emulator is attached. Run `adb devices` at the point you need the answer, never from a reading taken earlier: the human starts and stops emulators without saying so. If the check disagrees with what you expected, the check is right.
 - Never start, stop, restart or repair an emulator, never create or remove a tap or a bridge and never run sudo. If an emulator is broken, report it and leave it.
 
