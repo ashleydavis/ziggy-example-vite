@@ -54,7 +54,7 @@
     "test:everything": "bash ./scripts/test-everything.sh"
   },
   "dependencies": {
-    "ziggy": "git+https://github.com/ashleydavis/ziggy.git#v0.0.19"
+    "ziggy": "git+https://github.com/ashleydavis/ziggy.git#v0.0.20"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",
@@ -63,6 +63,7 @@
     "native-run": "^2.0.0",
     "ts-jest": "^29.0.5",
     "typescript": "^5.3.3",
-    "vite": "^5.1.6"
+    "vite": "^5.1.6",
+    "ziggy-remote-control-server": "git+https://github.com/ashleydavis/ziggy.git#v0.0.20"
   }
 }

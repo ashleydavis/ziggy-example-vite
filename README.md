@@ -19,7 +19,7 @@ The page shows the backend's message response to the `hello-world` message, and 
 Everything here is the app's own. Ziggy, the package it is built on, comes from a version tag of [Ziggy's repository](https://github.com/ashleydavis/ziggy), the same tag in every place below.
 
 - `build.zig` and `build.zig.zon`: the app's Zig build. It takes Ziggy as the dependency `ziggy` by the URL of a version tag and its hash, and builds the backend (`ziggy-example-vite-backend`), the Linux and Windows native apps (`ziggy-example-vite-linux`, `ziggy-example-vite-windows`), dev mode (`ziggy-example-vite-dev`) and the backend's unit tests (`test`) with Ziggy's build functions.
-- `package.json`: takes the frontend's types from Ziggy as `ziggy`, by the git URL of the same tag.
+- `package.json`: takes the frontend's types from Ziggy as `ziggy` and the remote control server as `ziggy-remote-control-server`, both by the git URL of the same tag.
 - `frontend/`: the frontend. `frontend/index.html` is the frontend and `frontend/src/lib` holds the plain functions that have unit tests. `vite.config.ts` is its build, which writes `dist` with relative paths and a classic script so it loads from an address of the app's own in every web view. `dist` is embedded in the app's own code on every platform (the Linux and Windows executables, and the backend library that the MacOS, iOS and Android apps contain), so no platform has a folder of frontend files (see the [architecture guide](https://github.com/ashleydavis/ziggy/blob/main/docs/development/architecture.md#the-bundled-frontend)).
 - `backend/`: the app's Zig library. `backend/src/app.zig` declares the app with `ziggy.core.App`, listing each message name with its handler and each task type with its handler, and Ziggy's build exports Ziggy's C interface for it. The handlers are in `backend/src/lib`. Ziggy writes the app's log files in `<data directory>/logs`, named and headed from `app.zon` (its name, title and version) (see Ziggy's [logging guide](https://github.com/ashleydavis/ziggy/blob/main/docs/user-guide/logging.md)).
 - `native/<platform>/`: the app's native project for each platform: its name, window, icon and the app's backend and frontend packaged together. Each one builds on Ziggy's part for that platform in `packages/ziggy/native/<platform>` of Ziggy's repository: the Linux and Windows native apps through the Zig build, the Xcode projects through the Swift package at the root of Ziggy's repository and the Android project through a Gradle source dependency on Ziggy's repository.
@@ -57,7 +57,7 @@ From the root of this repository, `<platform>` being `linux`, `windows`, `macos`
 | `bun run build:<platform>` | Builds the frontend and the app. |
 | `bun run <platform>` | Builds the app and launches it (an emulator, simulator or device for a phone). |
 | `bun run open:<platform>` | Syncs, then opens the native project in its editor. |
-| `bun run package:<platform>` | Packages the app for distribution, without the test hooks, into `out/<platform>`. |
+| `bun run package:<platform>` | Packages the app for distribution into `out/<platform>`. |
 | `bun run distribute:android` | Builds the Android app and uploads it to Firebase App Distribution for the tester group. See `scripts/distribute-android.md`. |
 | `bun run clean:<platform>` | Removes the platform's build output. |
 | `bun run clean` | Runs the clean for every platform this machine can clean. |
@@ -69,7 +69,7 @@ From the root of this repository, `<platform>` being `linux`, `windows`, `macos`
 | `bun run install-hooks` | Installs the pre-commit hook into this clone. Run once per clone. See `scripts/install-hooks.md`. |
 | `bun run test:everything` | Runs the checks (`compile`, `test`, `compile:zig`, `test:zig` and `test:smoke`) whose files changed since each last passed. The pre-commit hook runs it. `-- --force` runs them all. See `scripts/test-everything.md`. |
 
-`bun run package:<platform>` builds the release app, without the test hooks, and writes unsigned packages. Each platform's script doc explains where they go and what they need:
+`bun run package:<platform>` builds the release app and writes unsigned packages. Each platform's script doc explains where they go and what they need:
 
 | Platform | Packages | Script doc |
 |---|---|---|
@@ -81,8 +81,8 @@ From the root of this repository, `<platform>` being `linux`, `windows`, `macos`
 
 ## Test hooks
 
-The smoke tests drive the real app through the test hooks listed in "Test hooks" in the architecture guide: `backend/src/lib/ui-query.zig` tells the frontend it is in test mode, and `frontend/src/lib/test-commands.ts` handles the commands the smoke tests send. They are compiled in only by the `test-hooks` build option, which the smoke test runner sets and the `package` commands never do.
+The smoke tests drive the real app through the test hooks described in "Remote control" in the architecture guide: `backend/src/lib/ui-query.zig` tells the frontend it is in test mode, and `frontend/src/lib/test-commands.ts` handles the commands the smoke tests send. The remote control code is in every build and does nothing unless the app is started with `--remote-control <host:port>` (the `ziggy.remoteControl` extra on Android). The smoke tests start the app that way: it connects out to the [remote control server](https://github.com/ashleydavis/ziggy/blob/main/tools/remote-control-server/README.md), which passes each line the smoke test writes to the app and each reply back. The app gets the server from Ziggy's repository as the dev dependency `ziggy-remote-control-server`.
 
 ## CI
 
-Every push runs `.github/workflows/ci.yml`, which compiles and unit tests the TypeScript, cross-builds the Zig code for every platform and runs the backend's unit tests, and a release workflow per platform (`.github/workflows/release-<platform>.yml`), which runs the smoke tests on that platform (on macOS, on Apple Silicon only), packages the app and, on the default branch, publishes the packages.
+Every push runs `.github/workflows/ci.yml`, on Linux only: it compiles and unit tests the TypeScript, builds the Linux app in its `app-build-linux` job and runs the backend's unit tests on that build. It packages nothing. A release workflow per platform (`.github/workflows/release-<platform>.yml`) builds the app in its `app-build` job, then packages it, runs the unit tests and runs the smoke tests on the build side by side, and, on the default branch, publishes the package once all of them have passed.

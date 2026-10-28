@@ -9,7 +9,7 @@ What is packaged:
 
 All of it is generated into `app/build/ziggy` by `scripts/sync-android.sh`; see `scripts/*-android.md` for the setup, sync, build, run, open, package and clean scripts.
 
-The debug build has the INTERNET permission (in `app/src/debug`), because a test hooks build opens its control connection on the loopback address and Android refuses an app any socket without it. The release build has no such permission.
+The app has the INTERNET permission (in `app/src/main/AndroidManifest.xml`), because the remote control connection is a socket and Android refuses an app any socket without it. The app opens that connection only when it is started with the string Intent extra `ziggy.remoteControl`.
 
 
 The example's file and directory pickers (`pick-files`, `pick-folder`, `pick-file`) use the system document pickers through Ziggy's Android native app, which describes them: opened files are copied into the app's cache directory and returned as file system paths, while a chosen directory or a save location is returned as a `content://` Uri, which is not a file system path. `MainActivity` forwards `onActivityResult` to the native app.
