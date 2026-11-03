@@ -35,6 +35,32 @@ async function sayHello(): Promise<void> {
 }
 
 //
+// The handler of the example's action Say Hello From an Action, which its Hello menu item, its shortcut and the "Say hello from an
+// action" button all run: it shows a line.
+//
+function helloFromAction(): void {
+    element("action-output").textContent = "Hello from an action";
+}
+
+//
+// Registers the handlers of the example's actions.
+//
+function registerActions(): void {
+    window.ziggy.registerAction("hello-from-action", helloFromAction);
+}
+
+//
+// Has the "Say hello from an action" button run the action by its name, and shows why when it does not run.
+//
+function listenForTheActionButton(): void {
+    element("run-hello-action").addEventListener("click", () => {
+        window.ziggy.runAction("hello-from-action").catch((error: Error) => {
+            element("action-output").textContent = `The action did not run: ${error.message}`;
+        });
+    });
+}
+
+//
 // Starts the hello-world task when its button is pressed, and shows what the task sends and how it ends.
 //
 function listenForTheTask(): void {
@@ -76,6 +102,8 @@ function listenForTestCommands(): void {
 }
 
 listenForTheTask();
+registerActions();
+listenForTheActionButton();
 listenForTestCommands();
 sayHello().catch(error => {
     element("greeting").textContent = `The backend did not answer: ${(error as Error).message}`;

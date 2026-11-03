@@ -12,7 +12,7 @@ The example is the smallest complete app: a hello world for each kind of code an
 | Backend: a message handler and a task | `backend/src/lib/hello-world.zig`, registered in `backend/src/app.zig` | `backend/src/test/hello-world.test.zig` (`bun run test:zig`) |
 | The whole app | The app | `smoke-tests/hello-world-app/test.sh` (`bun run test:smoke`) |
 
-The page shows the backend's message response to the `hello-world` message, and a button starts the `hello-world-task` task and shows what it sends. The desktop menu is defined once in Zig (`backend/src/lib/menu.zig`) and drawn natively; a mobile device shows no menu.
+The page shows the backend's message response to the `hello-world` message, and a button starts the `hello-world-task` task and shows what it sends. The desktop menu is defined once in Zig (`backend/src/lib/menu.zig`) and drawn natively; a mobile device shows no menu. The example's action, `hello-from-action` (`backend/src/lib/actions.zig`), runs from its Hello menu item, from its shortcut, Ctrl+Shift+H (Command+Shift+H on macOS), and from the page's "Say hello from an action" button, and shows `Hello from an action`.
 
 ## Where things are
 
