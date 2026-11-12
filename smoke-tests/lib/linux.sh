@@ -46,6 +46,8 @@ ziggy_platform_start() {
     read -r _ pgid < <(launch_in_process_group "$log" env \
         WEBKIT_DISABLE_SANDBOX_THIS_IS_DANGEROUS=1 \
         XDG_DATA_HOME="$test_dir/data" \
+        ZIGGY_EXAMPLE_VITE_CONFIG_DIR="$test_dir/config" \
+        ZIGGY_EXAMPLE_VITE_STATE_DIR="$test_dir/state" \
         xvfb-run -a -s "-screen 0 1280x1024x24" "$app" ${ZIGGY_REMOTE_CONTROL:+--remote-control "$ZIGGY_REMOTE_CONTROL"}) || return 1
     echo "$pgid" > "$test_dir/$LINUX_PGID_FILE_NAME"
 }

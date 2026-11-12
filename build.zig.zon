@@ -7,8 +7,7 @@
         // Ziggy, at a version tag of its repository. Every other place that takes Ziggy (package.json, the Xcode projects and
         // native/android/app/build.gradle) names the same version.
         .ziggy = .{
-            .url = "git+https://github.com/ashleydavis/ziggy.git?ref=v0.0.23#7f7d023f9c75a14a0224619a1407a1f321d24fa3",
-            .hash = "ziggy-0.0.0-Yh04rtu6JACgTv15nD3SJnML5H6T7wbSVJ1QrYPP-F-l",
+            .path = "../../../../ziggy/.claude/worktrees/plan-config-and-state",
         },
     },
     .paths = .{

@@ -6,6 +6,7 @@
 const std = @import("std");
 const ziggy = @import("ziggy");
 const app = @import("ziggy-example-vite-backend");
+const test_environment = @import("test-environment.zig");
 
 const FakeNativeApp = ziggy.fake_native_app.FakeNativeApp;
 
@@ -18,6 +19,8 @@ test "the example writes its two log files in its data directory, with its heade
     var native_app: FakeNativeApp = undefined;
     native_app.init();
     defer native_app.deinit(std.testing.io, std.testing.allocator);
+    const environment = try test_environment.useTestEnvironment(std.testing.allocator, native_app.data_tmp);
+    defer test_environment.freeTestEnvironment(std.testing.allocator, environment);
     var config = native_app.config(2, 2);
     config.data_dir = data_dir.ptr;
     try native_app.start(std.testing.io, std.testing.allocator, config, app.app);

@@ -7,6 +7,7 @@
 const std = @import("std");
 const ziggy = @import("ziggy");
 const app = @import("ziggy-example-vite-backend");
+const test_environment = @import("test-environment.zig");
 
 const FakeNativeApp = ziggy.fake_native_app.FakeNativeApp;
 
@@ -14,6 +15,8 @@ test "the hello-world message is answered with a greeting for the name it sent" 
     var native_app: FakeNativeApp = undefined;
     native_app.init();
     defer native_app.deinit(std.testing.io, std.testing.allocator);
+    const environment = try test_environment.useTestEnvironment(std.testing.allocator, native_app.data_tmp);
+    defer test_environment.freeTestEnvironment(std.testing.allocator, environment);
     try native_app.start(std.testing.io, std.testing.allocator, native_app.config(2, 2), app.app);
     defer native_app.stop(std.testing.io, std.testing.allocator);
     try native_app.send(std.testing.io, std.testing.allocator, "{\"kind\":\"app\",\"id\":1,\"name\":\"hello-world\",\"data\":{\"name\":\"world\"}}");
@@ -24,6 +27,8 @@ test "a hello-world message with no name is refused as InvalidMessageData naming
     var native_app: FakeNativeApp = undefined;
     native_app.init();
     defer native_app.deinit(std.testing.io, std.testing.allocator);
+    const environment = try test_environment.useTestEnvironment(std.testing.allocator, native_app.data_tmp);
+    defer test_environment.freeTestEnvironment(std.testing.allocator, environment);
     try native_app.start(std.testing.io, std.testing.allocator, native_app.config(2, 2), app.app);
     defer native_app.stop(std.testing.io, std.testing.allocator);
     try native_app.send(std.testing.io, std.testing.allocator, "{\"kind\":\"app\",\"id\":1,\"name\":\"hello-world\"}");
@@ -34,6 +39,8 @@ test "the hello-world task sends its output and completes" {
     var native_app: FakeNativeApp = undefined;
     native_app.init();
     defer native_app.deinit(std.testing.io, std.testing.allocator);
+    const environment = try test_environment.useTestEnvironment(std.testing.allocator, native_app.data_tmp);
+    defer test_environment.freeTestEnvironment(std.testing.allocator, environment);
     try native_app.start(std.testing.io, std.testing.allocator, native_app.config(2, 2), app.app);
     defer native_app.stop(std.testing.io, std.testing.allocator);
     try native_app.send(std.testing.io, std.testing.allocator, "{\"kind\":\"system\",\"name\":\"add-task\",\"data\":{\"taskId\":\"t1\",\"taskType\":\"hello-world-task\",\"source\":\"hello\",\"data\":null}}");
@@ -45,6 +52,8 @@ test "a message of a name the example does not know is answered with UnknownMess
     var native_app: FakeNativeApp = undefined;
     native_app.init();
     defer native_app.deinit(std.testing.io, std.testing.allocator);
+    const environment = try test_environment.useTestEnvironment(std.testing.allocator, native_app.data_tmp);
+    defer test_environment.freeTestEnvironment(std.testing.allocator, environment);
     try native_app.start(std.testing.io, std.testing.allocator, native_app.config(2, 2), app.app);
     defer native_app.stop(std.testing.io, std.testing.allocator);
     try native_app.send(std.testing.io, std.testing.allocator, "{\"kind\":\"app\",\"id\":1,\"name\":\"goodbye-world\"}");
@@ -55,6 +64,8 @@ test "a message with no name is refused with MissingMessageName" {
     var native_app: FakeNativeApp = undefined;
     native_app.init();
     defer native_app.deinit(std.testing.io, std.testing.allocator);
+    const environment = try test_environment.useTestEnvironment(std.testing.allocator, native_app.data_tmp);
+    defer test_environment.freeTestEnvironment(std.testing.allocator, environment);
     try native_app.start(std.testing.io, std.testing.allocator, native_app.config(2, 2), app.app);
     defer native_app.stop(std.testing.io, std.testing.allocator);
     try native_app.send(std.testing.io, std.testing.allocator, "{\"kind\":\"app\",\"id\":1,\"data\":{\"name\":\"world\"}}");
