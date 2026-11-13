@@ -4,10 +4,9 @@
     .fingerprint = 0xc31d2a38c0ad0c9a,
     .minimum_zig_version = "0.16.0",
     .dependencies = .{
-        // Ziggy, at a version tag of its repository. Every other place that takes Ziggy (package.json, the Xcode projects and
-        // native/android/app/build.gradle) names the same version.
+        // Ziggy, from the worktree beside this one. The frontend package takes the same checkout (package.json).
         .ziggy = .{
-            .path = "../../../../ziggy/.claude/worktrees/plan-config-and-state",
+            .path = "../../../../ziggy/.claude/worktrees/theme",
         },
     },
     .paths = .{
