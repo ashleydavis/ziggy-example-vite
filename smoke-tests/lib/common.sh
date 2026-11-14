@@ -13,10 +13,10 @@
 #       or without it when ZIGGY_REMOTE_CONTROL is empty,
 #       recording what it started through launch_in_process_group. The app connects to the remote control server that
 #       start_test_app started. Returns non-zero when the app did not start. With keep-data it starts the app again on the data the
-#       last run left, instead of fresh data, and on a phone on the same device and the same install.
+#       last run left, instead of fresh data, and on a mobile on the same device and the same install.
 #
 #   ziggy_platform_stop <test_dir> [keep-device]
-#       Stops the app and everything it started. With keep-device a phone stays claimed, so a restart finds its data.
+#       Stops the app and everything it started. With keep-device a mobile stays claimed, so a restart finds its data.
 #
 #   ziggy_platform_devtools_visible <test_dir> <the frontend's area before they opened>   (desktop platforms)
 #       Succeeds when the developer tools are showing. How a script sees them differs: on Linux and macOS they dock inside the
@@ -234,6 +234,20 @@ choose_menu_item() {
     answer="$(control "{\"command\":\"menu\",\"action\":\"$1\"}")"
     if [ "$(printf '%s' "$answer" | jq -r '.ok')" != "true" ]; then
         fail "choosing the menu item $1 failed: $answer"
+    fi
+}
+
+#
+# Presses a key as a user does, through the native app, so a shortcut that is broken for a user fails. The key is written as a
+# shortcut, such as CmdOrCtrl+Shift+H. Usage: press_key <key>
+#
+press_key() {
+    local line
+    line="$(jq -nc --arg key "$1" '{command: "press-key", key: $key}')"
+    local answer
+    answer="$(control "$line")"
+    if [ "$(printf '%s' "$answer" | jq -r '.ok')" != "true" ]; then
+        fail "pressing the key $1 failed: $answer"
     fi
 }
 

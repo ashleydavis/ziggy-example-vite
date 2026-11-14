@@ -47,6 +47,7 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
   - Do not write a bug down instead of dealing with it: no registry, known-issues list, doc section or TODO comment naming a test that sometimes fails.
   - The only failures outside your reach are outside the machine: a network that dropped, a disk that filled or failed, a remote service that was down. The code should expect those and fail loudly, naming what happened. Everything else is yours: if you cannot find the cause yet, say what you have ruled out and what you will look at next.
 - NEVER USE EM DASHES.
+- "phone" is banned. Say "mobile".
 - Never use memory.
 - All Claude configuration goes in this repository only, not in the home directory.
 - Slash commands go in `.claude/commands/`, as a markdown file per command, grouped in a subdirectory where there is more than one of a kind. A request for a "skill" means one of these. Do not create a `.claude/skills/` directory or a `SKILL.md`. A command file has frontmatter carrying `description` and nothing else, then the prompt as ordinary markdown with a heading and steps. The `description` describes what the command does, not when to trigger it.
