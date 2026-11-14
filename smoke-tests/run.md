@@ -15,6 +15,7 @@ Puts the built app in place once for the platform, then runs each `test.sh`, one
 
 ## Smoke tests
 
+- `hello-action-shortcut`: pressing Ctrl+Shift+H (Cmd+Shift+H on macOS) runs the example's Say Hello From an Action action, whose handler shows its line. On a mobile it checks nothing, because a mobile has no shortcuts.
 - `hello-world-app`: hello world example. The backend's message response to the hello-world message appears, and the hello-world task's output appears once its button is pressed. Change it into your own smoke test, or delete it.
 
 To add one, make a directory here with a `test.sh` that sources `../lib/common.sh`.

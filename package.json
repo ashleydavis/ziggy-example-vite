@@ -54,7 +54,7 @@
     "test:everything": "bash ./scripts/test-everything.sh"
   },
   "dependencies": {
-    "ziggy": "file:../../../../ziggy/.claude/worktrees/theme/packages/ziggy/frontend"
+    "ziggy": "file:../../../../ziggy/.claude/worktrees/frontend-shortcuts/packages/ziggy/frontend"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",

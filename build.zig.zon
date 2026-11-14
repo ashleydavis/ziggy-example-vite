@@ -6,7 +6,7 @@
     .dependencies = .{
         // Ziggy, from the worktree beside this one. The frontend package takes the same checkout (package.json).
         .ziggy = .{
-            .path = "../../../../ziggy/.claude/worktrees/theme",
+            .path = "../../../../ziggy/.claude/worktrees/frontend-shortcuts",
         },
     },
     .paths = .{

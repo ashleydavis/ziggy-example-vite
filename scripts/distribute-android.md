@@ -1,6 +1,6 @@
 # distribute-android.sh
 
-Builds the example's Android app and uploads it to Firebase App Distribution, which notifies the tester group and gives them a link to install it. The [guide to distributing your app](https://github.com/ashleydavis/ziggy/blob/main/docs/user-guide/distributing-your-app.md) covers the one-time Firebase setup, what testers do on their phones and what goes wrong.
+Builds the example's Android app and uploads it to Firebase App Distribution, which notifies the tester group and gives them a link to install it. The [guide to distributing your app](https://github.com/ashleydavis/ziggy/blob/main/docs/user-guide/distributing-your-app.md) covers the one-time Firebase setup, what testers do on their mobiles and what goes wrong.
 
 Run it from the repository root:
 
