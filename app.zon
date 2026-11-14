@@ -4,4 +4,9 @@
     .name = "ziggy-example-vite",
     .title = "Ziggy Vite example",
     .version = "1.0.0",
+    .splash = .{
+        .background = "#FFFFFF",
+        .portrait = "assets/splash-portrait.png",
+        .landscape = "assets/splash-landscape.png",
+    },
 }

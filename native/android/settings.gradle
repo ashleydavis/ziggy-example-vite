@@ -1,12 +1,10 @@
-// The Ziggy Vite example's Android project: the app, which takes Ziggy's Android native app from Ziggy's repository on GitHub. Gradle checks
-// the repository out at the version tag that the dependency `dev.ziggy:ziggy-native-android` in app/build.gradle names, and
-// builds the native app from it.
+// The Ziggy Vite example's Android project: the app, which takes Ziggy's Android native app from the Ziggy checkout beside this
+// repository.
 rootProject.name = 'ziggy-example-vite-android'
 
 include ':app'
-sourceControl {
-    gitRepository(uri('https://github.com/ashleydavis/ziggy.git')) {
-        producesModule('dev.ziggy:ziggy-native-android')
-        rootDir = 'packages/ziggy/native/android'
+includeBuild('../../../../../../ziggy/.claude/worktrees/splash-screens/packages/ziggy/native/android') {
+    dependencySubstitution {
+        substitute module('dev.ziggy:ziggy-native-android') using project(':')
     }
 }

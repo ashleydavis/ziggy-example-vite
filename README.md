@@ -26,6 +26,10 @@ Everything here is the app's own. Ziggy, the package it is built on, comes from 
 - `scripts`: the build, run, packaging and setup scripts, and the shell libraries the scripts share (`scripts/lib`), each with a markdown file beside it.
 - `smoke-tests`: the smoke tests, with a library for each platform that builds, starts and stops the app. See `smoke-tests/run.md`.
 
+## Icons and splash screens
+
+The app's icon and splash art are the SVGs in `assets/`, named by `assets.json`, and `.splash` in `app.zon` gives the native apps and the frontend the background colour and the two splash images. Run `bash ../ziggy/scripts/generate-app-assets.sh --app . --assets assets` from this repository to regenerate every platform's icons and splash images. The app takes Ziggy from the sibling checkout, `../ziggy`, in `build.zig.zon`, `package.json`, both Xcode projects and the Android Gradle build. See Ziggy's [App icons and splash screens](https://github.com/ashleydavis/ziggy/blob/main/docs/user-guide/app-icons-and-splash.md).
+
 ## Getting started
 
 Install [mise](https://mise.jdx.dev) and the libraries and tools your platform needs, listed in Ziggy's [Dependencies](https://github.com/ashleydavis/ziggy/blob/main/docs/user-guide/dependencies.md).

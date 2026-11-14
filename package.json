@@ -54,7 +54,7 @@
     "test:everything": "bash ./scripts/test-everything.sh"
   },
   "dependencies": {
-    "ziggy": "file:../ziggy/.claude/worktrees/new-window/packages/ziggy/frontend"
+    "ziggy": "file:../../ziggy/packages/ziggy/frontend"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",
@@ -64,6 +64,6 @@
     "ts-jest": "^29.0.5",
     "typescript": "^5.3.3",
     "vite": "^5.1.6",
-    "ziggy-remote-control-server": "git+https://github.com/ashleydavis/ziggy.git#v0.0.23"
+    "ziggy-remote-control-server": "file:../../ziggy/tools/remote-control-server"
   }
 }

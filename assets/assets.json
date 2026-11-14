@@ -1,0 +1,11 @@
+{
+    "name": "Ziggy Vite example",
+    "prefix": "app-icon",
+    "icon": "app-icon.svg",
+    "foreground": "app-icon-foreground.svg",
+    "portrait": "splash-portrait.svg",
+    "landscape": "splash-landscape.svg",
+    "background": "#241B0A",
+    "macosTarget": "ZiggyExampleVite",
+    "iosTarget": "ZiggyExampleVite"
+}
