@@ -17,6 +17,12 @@ pub const menu: []const ziggy.menu.Menu = &.{
     .{
         .label = "File",
         .items = &.{
+            // Runs the example's action New Window, whose label and shortcut the item shows.
+            .{
+                .run = .{
+                    .action = "new-window",
+                },
+            },
             .{
                 .label = "Close Window",
                 .shortcut = "CmdOrCtrl+W",

@@ -47,6 +47,16 @@ function helloFromAction(): void {
 //
 function registerActions(): void {
     window.ziggy.registerAction("hello-from-action", helloFromAction);
+    window.ziggy.registerAction("new-window", openNewWindow);
+}
+
+//
+// The handler of the example's action New Window: opens another window of the example, and shows why when it does not open.
+//
+function openNewWindow(): Promise<void> {
+    return window.ziggy.newWindow([]).catch((error: Error) => {
+        element("action-output").textContent = `The new window did not open: ${error.message}`;
+    });
 }
 
 //
