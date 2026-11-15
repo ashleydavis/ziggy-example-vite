@@ -19,11 +19,13 @@ on:
 
   workflow_dispatch:
 
+# The Linux jobs run on ubuntu-24.04, a fixed image, not ubuntu-latest: ubuntu-latest moved to ubuntu-26.04, which changed CI under
+# unchanged code (on it, every start of a Ziggy Linux app waited 25 seconds for the desktop portal).
 jobs:
   typescript-compile:
     # Compiles the TypeScript, which is the only check of its types: the unit tests run it without checking them.
     timeout-minutes: 20
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -58,7 +60,7 @@ jobs:
   typescript-unit-tests:
     # The TypeScript unit tests (the app's frontend).
     timeout-minutes: 20
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -95,7 +97,7 @@ jobs:
     # Builds the app's Linux release build with its build script into example-build/app. It saves the build and its Zig build
     # cache under the key example-build-linux-<commit>, which zig-unit-tests-linux restores.
     timeout-minutes: 60
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -185,7 +187,7 @@ jobs:
     # saved.
     needs: app-build-linux
     timeout-minutes: 50
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

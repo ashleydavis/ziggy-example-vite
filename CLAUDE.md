@@ -22,6 +22,8 @@ The app is developed on Linux and delivered and tested on Linux, Windows, macOS,
 
 - Ziggy's code lives in its own repository, https://github.com/ashleydavis/ziggy. This repository pins it to a version tag in `build.zig.zon` (the `ziggy` dependency), `package.json` (`ziggy` and `ziggy-remote-control-server`), the Xcode projects in `native/macos` and `native/ios` and `native/android/app/build.gradle`, all to the same tag. A move to a new version of Ziggy changes every one of them together.
 - Never edit Ziggy's code from this repository. If a change needs one in Ziggy, stop and say what and why.
+- HIGH PRIORITY: NEVER CHANGE CI WORKFLOWS (`.github/`) TO SUPPORT A LOCAL ZIGGY. Switching this project to a local Ziggy checkout for testing is temporary, so the workflows always keep taking Ziggy from its release tag.
+- HIGH PRIORITY: Never update the documentation to describe a temporary switch to a local Ziggy. The docs always describe taking Ziggy from its release tag.
 
 ## Rules
 

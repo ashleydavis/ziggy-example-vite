@@ -5,7 +5,7 @@
     .title = "Ziggy Vite example",
     .version = "1.0.0",
     .splash = .{
-        .background = "#FFFFFF",
+        .background = "#241B0A",
         .portrait = "assets/splash-portrait.png",
         .landscape = "assets/splash-landscape.png",
     },

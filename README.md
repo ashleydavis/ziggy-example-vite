@@ -28,7 +28,7 @@ Everything here is the app's own. Ziggy, the package it is built on, comes from 
 
 ## Icons and splash screens
 
-The app's icon and splash art are the SVGs in `assets/`, named by `assets.json`, and `.splash` in `app.zon` gives the native apps and the frontend the background colour and the two splash images. Run `bash ../ziggy/scripts/generate-app-assets.sh --app . --assets assets` from this repository to regenerate every platform's icons and splash images. The app takes Ziggy from the sibling checkout, `../ziggy`, in `build.zig.zon`, `package.json`, both Xcode projects and the Android Gradle build. See Ziggy's [App icons and splash screens](https://github.com/ashleydavis/ziggy/blob/main/docs/user-guide/app-icons-and-splash.md).
+The app's icon and splash art are the SVGs in `assets/`, named by `assets.json`, and `.splash` in `app.zon` gives the native apps and the frontend the background colour and the two splash images. Run `bash ../ziggy/scripts/generate-app-assets.sh --app . --assets assets` from this repository to regenerate every platform's icons and splash images. The app takes Ziggy from one version tag of Ziggy's repository, named in `build.zig.zon`, `package.json`, both Xcode projects and `native/android/app/build.gradle`. See Ziggy's [App icons and splash screens](https://github.com/ashleydavis/ziggy/blob/main/docs/user-guide/app-icons-and-splash.md).
 
 ## Getting started
 
