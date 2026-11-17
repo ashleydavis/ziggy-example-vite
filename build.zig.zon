@@ -7,7 +7,7 @@
         // Ziggy, at a version tag of its repository. Every other place that takes Ziggy (package.json, the Xcode projects and
         // native/android/app/build.gradle) names the same version.
         .ziggy = .{
-            .path = "../../../../ziggy/.claude/worktrees/log-err",
+            .path = "../ziggy",
         },
     },
     .paths = .{
