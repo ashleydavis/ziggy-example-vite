@@ -2,10 +2,6 @@
 <resources>
     <style name="AppTheme" parent="@android:style/Theme.DeviceDefault.NoActionBar">
         <item name="android:windowSplashScreenBackground">@color/splash_background</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
-        <!-- No android:postSplashScreenTheme here. Ziggy's generate-app-assets.sh writes one, but the Android
-             framework has no such attribute (it belongs to AndroidX core-splashscreen, without the android: prefix),
-             so aapt2 failed :app:processDebugResources with "style attribute 'android:attr/postSplashScreenTheme'
-             not found" and broke the Release Android app-build job. -->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_icon</item>
     </style>
 </resources>
