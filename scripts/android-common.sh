@@ -47,8 +47,26 @@ ziggy_android_min_sdk() {
 #
 # Runs Gradle in the example's Android project. Usage: ziggy_android_gradle <gradle arguments...>
 #
+# Gradle downloads its plugins and libraries from Maven repositories, which refuse requests when they are busy: Maven Central
+# once answered "429 Too Many Requests" and once said files it holds did not exist, failing builds. A run that could not get its
+# dependencies is run again, up to three times in all, after 30 and then 60 seconds. Any other failure fails straight away.
+#
 ziggy_android_gradle() {
-    (cd "$ZIGGY_ANDROID_PROJECT_DIR" && ./gradlew "$@")
+    local attempts=3
+    local attempt=1
+    local log status
+    log="$(mktemp)"
+    while true; do
+        status=0
+        (cd "$ZIGGY_ANDROID_PROJECT_DIR" && ./gradlew "$@") 2>&1 | tee "$log" || status=$?
+        if [ "$status" -eq 0 ] || [ "$attempt" -ge "$attempts" ] || ! grep -q "Could not resolve all \(artifacts\|files\|dependencies\)" "$log"; then
+            rm -f "$log"
+            return "$status"
+        fi
+        echo "Gradle could not get its dependencies (attempt $attempt of $attempts). Trying again in $((attempt * 30)) seconds." >&2
+        sleep $((attempt * 30))
+        attempt=$((attempt + 1))
+    done
 }
 
 #
