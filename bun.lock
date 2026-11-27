@@ -5,7 +5,7 @@
     "": {
       "name": "ziggy-example-vite",
       "dependencies": {
-        "ziggy": "git+https://github.com/ashleydavis/ziggy.git#v0.0.33",
+        "ziggy": "git+https://github.com/ashleydavis/ziggy.git#v0.0.34",
       },
       "devDependencies": {
         "@types/jest": "^29.4.0",
@@ -15,7 +15,7 @@
         "ts-jest": "^29.0.5",
         "typescript": "^5.3.3",
         "vite": "^5.1.6",
-        "ziggy-remote-control-server": "git+https://github.com/ashleydavis/ziggy.git#v0.0.33",
+        "ziggy-remote-control-server": "git+https://github.com/ashleydavis/ziggy.git#v0.0.34",
       },
     },
   },
@@ -854,9 +854,9 @@
 
     "yocto-queue": ["yocto-queue@0.1.0", "", {}, "sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q=="],
 
-    "ziggy": ["ziggy-monorepo@github:ashleydavis/ziggy#cb8c448", { "dependencies": { "express": "5.3.0", "ws": "8.22.0" }, "bin": { "ziggy-remote-control-server": "tools/remote-control-server/src/index.ts" } }, "ashleydavis-ziggy-cb8c448", "sha512-eKoBteMkZ1gKD1wCz9Buy5gpMftD9TYRQQGURvkI77G22SX0s6hYcnBWGMTdjffxPSQX1lcYGh54pkrRextl3g=="],
+    "ziggy": ["ziggy-monorepo@github:ashleydavis/ziggy#69c675d", { "dependencies": { "express": "5.3.0", "ws": "8.22.0" }, "bin": { "ziggy-remote-control-server": "tools/remote-control-server/src/index.ts" } }, "ashleydavis-ziggy-69c675d", "sha512-JrVOHxD5W0706RrS8TOx/NGFDEB66RVn7kvVBi/mgDRh8QAgyHDU8qAJf3zKW9yD3C0ZyEyN11Tw7hOZ7/RpgA=="],
 
-    "ziggy-remote-control-server": ["ziggy-monorepo@github:ashleydavis/ziggy#cb8c448", { "dependencies": { "express": "5.3.0", "ws": "8.22.0" }, "bin": { "ziggy-remote-control-server": "tools/remote-control-server/src/index.ts" } }, "ashleydavis-ziggy-cb8c448", "sha512-eKoBteMkZ1gKD1wCz9Buy5gpMftD9TYRQQGURvkI77G22SX0s6hYcnBWGMTdjffxPSQX1lcYGh54pkrRextl3g=="],
+    "ziggy-remote-control-server": ["ziggy-monorepo@github:ashleydavis/ziggy#69c675d", { "dependencies": { "express": "5.3.0", "ws": "8.22.0" }, "bin": { "ziggy-remote-control-server": "tools/remote-control-server/src/index.ts" } }, "ashleydavis-ziggy-69c675d", "sha512-JrVOHxD5W0706RrS8TOx/NGFDEB66RVn7kvVBi/mgDRh8QAgyHDU8qAJf3zKW9yD3C0ZyEyN11Tw7hOZ7/RpgA=="],
 
     "@babel/core/semver": ["semver@6.3.1", "", { "bin": { "semver": "bin/semver.js" } }, "sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA=="],
 
